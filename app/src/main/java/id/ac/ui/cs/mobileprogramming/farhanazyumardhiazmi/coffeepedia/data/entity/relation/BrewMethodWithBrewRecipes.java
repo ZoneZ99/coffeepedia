@@ -9,7 +9,9 @@ import java.util.List;
 
 public class BrewMethodWithBrewRecipes {
 
-	@Embedded public BrewMethod brewMethod;
+	@Embedded
+	public BrewMethod brewMethod;
+
 	@Relation(
 		parentColumn = "brewMethodId",
 		entityColumn = "relatedBrewMethodId"
