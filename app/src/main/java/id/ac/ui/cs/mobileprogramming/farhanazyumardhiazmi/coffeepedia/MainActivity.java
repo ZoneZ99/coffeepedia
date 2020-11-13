@@ -1,8 +1,9 @@
 package id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia;
 
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.ui.main.MainFragment;
+import android.view.View;
+import android.widget.Toast;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -10,10 +11,21 @@ public class MainActivity extends AppCompatActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main_activity);
-		if (savedInstanceState == null) {
-			getSupportFragmentManager().beginTransaction()
-				.replace(R.id.container, MainFragment.newInstance())
-				.commitNow();
-		}
+	}
+
+	public void callCoffeeBeansActivity(View view) {
+		Toast.makeText(getApplicationContext(), "Bean", Toast.LENGTH_LONG).show();
+	}
+
+	public void callCoffeeReviewActivity(View view) {
+		Toast.makeText(getApplicationContext(), "Review", Toast.LENGTH_LONG).show();
+	}
+
+	public void callBrewMethodsActivity(View view) {
+		Toast.makeText(getApplicationContext(), "Method", Toast.LENGTH_LONG).show();
+	}
+
+	public void callBrewRecipesActivity(View view) {
+		Toast.makeText(getApplicationContext(), "Recipe", Toast.LENGTH_LONG).show();
 	}
 }
