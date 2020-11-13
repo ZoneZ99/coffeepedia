@@ -1,0 +1,14 @@
+package id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.ui.activity;
+
+import android.os.Bundle;
+import androidx.appcompat.app.AppCompatActivity;
+import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.R;
+
+public class CoffeeBeansActivity extends AppCompatActivity {
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_coffee_beans);
+	}
+}
