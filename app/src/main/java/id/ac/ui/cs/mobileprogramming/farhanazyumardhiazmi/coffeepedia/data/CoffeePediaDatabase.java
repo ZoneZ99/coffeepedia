@@ -16,6 +16,8 @@ import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.data.entit
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.data.entity.BrewRecipe;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.data.entity.CoffeeBean;
 
+import java.util.List;
+
 @Database(
 	entities = {
 		CoffeeBean.class,
@@ -54,11 +56,20 @@ public abstract class CoffeePediaDatabase extends RoomDatabase {
 					super.onCreate(db);
 					executors.getDiskIO().execute(() -> {
 						CoffeePediaDatabase database = CoffeePediaDatabase.getInstance(context, executors);
+						List<CoffeeBean> coffeeBeansSeed = DataGenerator.generateCoffeeBeans();
+						seedData(database, coffeeBeansSeed);
 						database.setDatabaseCreated();
 					});
 				}
 			})
 			.build();
+	}
+
+	private static void seedData(final CoffeePediaDatabase database, final List<CoffeeBean> coffeeBeans) {
+		database.runInTransaction(() ->
+			coffeeBeans.forEach(coffeeBean ->
+				database.coffeeBeanDao().insertCoffeeBean(coffeeBean))
+		);
 	}
 
 	private void updateDatabaseCreated(final Context context) {
