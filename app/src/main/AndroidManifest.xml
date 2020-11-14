@@ -28,6 +28,8 @@
 
         <activity android:name=".ui.activity.BrewRecipesActivity"></activity>
 
+        <service android:name=".service.CoffeeReviewScrapingService"></service>
+
     </application>
 
 </manifest>
