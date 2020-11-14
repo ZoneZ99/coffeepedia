@@ -8,13 +8,19 @@ import android.widget.ArrayAdapter;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
+import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.data.entity.CoffeeBean;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.databinding.FragmentCoffeeBeanListBinding;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.ui.viewmodel.CoffeeBeanListViewModel;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class CoffeeBeanListFragment extends Fragment {
+
+	public static final String TAG = "CoffeeBeanListFragment";
 
 	private CoffeeBeanListViewModel mViewModel;
 
@@ -36,6 +42,24 @@ public class CoffeeBeanListFragment extends Fragment {
 		super.onActivityCreated(savedInstanceState);
 		mViewModel = new ViewModelProvider(requireActivity()).get(CoffeeBeanListViewModel.class);
 
+		LiveData<List<CoffeeBean>> coffeeBeans = mViewModel.getCoffeeBeans();
+		coffeeBeans.observe(getViewLifecycleOwner(), beans -> {
+			if (beans != null) {
+				List<String> coffeeBeanNames = beans.stream()
+					.map(CoffeeBean::getName)
+					.collect(Collectors.toList());
+				mBinding.coffeeBeanList.setAdapter(
+					new ArrayAdapter<>(
+						getActivity(),
+						android.R.layout.simple_list_item_1,
+						coffeeBeanNames
+					)
+				);
+			} else {
+
+			}
+		});
+
 		ArrayList<String> loadingContent = new ArrayList<>();
 		for (int i = 0; i < 10; i++) {
 			loadingContent.add("Loading...");
@@ -47,5 +71,11 @@ public class CoffeeBeanListFragment extends Fragment {
 				loadingContent
 			)
 		);
+	}
+
+	@Override
+	public void onDestroyView() {
+		mBinding = null;
+		super.onDestroyView();
 	}
 }

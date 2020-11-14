@@ -20,4 +20,7 @@ public interface CoffeeBeanDao {
 
 	@Query("SELECT * FROM coffee_beans")
 	LiveData<List<CoffeeBean>> loadAllCoffeeBeans();
+
+	@Query("SELECT * FROM coffee_beans WHERE coffeeBeanId = :coffeeBeanId")
+	LiveData<CoffeeBean> getCoffeeBeanById(int coffeeBeanId);
 }
