@@ -57,7 +57,8 @@ public abstract class CoffeePediaDatabase extends RoomDatabase {
 					executors.getDiskIO().execute(() -> {
 						CoffeePediaDatabase database = CoffeePediaDatabase.getInstance(context, executors);
 						List<CoffeeBean> coffeeBeansSeed = DataGenerator.generateCoffeeBeans();
-						seedData(database, coffeeBeansSeed);
+						List<BrewMethod> brewMethodsSeed = DataGenerator.generateBrewMethods();
+						seedData(database, coffeeBeansSeed, brewMethodsSeed);
 						database.setDatabaseCreated();
 					});
 				}
@@ -65,10 +66,15 @@ public abstract class CoffeePediaDatabase extends RoomDatabase {
 			.build();
 	}
 
-	private static void seedData(final CoffeePediaDatabase database, final List<CoffeeBean> coffeeBeans) {
-		database.runInTransaction(() ->
-			coffeeBeans.forEach(coffeeBean ->
-				database.coffeeBeanDao().insertCoffeeBean(coffeeBean))
+	private static void seedData(
+		final CoffeePediaDatabase database,
+		final List<CoffeeBean> coffeeBeans,
+		final List<BrewMethod> brewMethods
+	) {
+		database.runInTransaction(() -> {
+				coffeeBeans.forEach(coffeeBean -> database.coffeeBeanDao().insertCoffeeBean(coffeeBean));
+				brewMethods.forEach(brewMethod -> database.brewMethodDao().insertBrewMethod(brewMethod));
+			}
 		);
 	}
 

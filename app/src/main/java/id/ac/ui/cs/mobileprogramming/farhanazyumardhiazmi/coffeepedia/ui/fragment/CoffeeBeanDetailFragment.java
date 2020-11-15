@@ -22,6 +22,8 @@ public class CoffeeBeanDetailFragment extends Fragment {
 
 	private CoffeeBeanViewModel mViewModel;
 
+	private static final String COFFEE_BEAN_ID = "coffee_bean_id";
+
 	@Nullable
 	@Override
 	public View onCreateView(
@@ -37,7 +39,7 @@ public class CoffeeBeanDetailFragment extends Fragment {
 	public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 		CoffeeBeanViewModel.Factory factory = new CoffeeBeanViewModel.Factory(
 			requireActivity().getApplication(),
-			requireArguments().getLong("coffee_bean_id")
+			requireArguments().getLong(COFFEE_BEAN_ID)
 		);
 		mViewModel = new ViewModelProvider(this, factory).get(CoffeeBeanViewModel.class);
 		mBinding.setLifecycleOwner(getViewLifecycleOwner());
@@ -55,7 +57,7 @@ public class CoffeeBeanDetailFragment extends Fragment {
 	public static CoffeeBeanDetailFragment forCoffeeBean(long coffeeBeanId) {
 		CoffeeBeanDetailFragment fragment = new CoffeeBeanDetailFragment();
 		Bundle args = new Bundle();
-		args.putLong("coffee_bean_id", coffeeBeanId);
+		args.putLong(COFFEE_BEAN_ID, coffeeBeanId);
 		fragment.setArguments(args);
 		return fragment;
 	}

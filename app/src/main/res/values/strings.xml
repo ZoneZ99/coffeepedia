@@ -21,4 +21,6 @@
     <string name="success_add_coffee_bean">Coffee bean added</string>
     <string name="success_edit_coffee_bean">Coffe bean edited</string>
     <string name="success_delete_coffee_bean">Coffee bean deleted</string>
+    <string name="brew_methods">Brew Methods</string>
+    <string name="add_brew_method">Add Brew Method</string>
 </resources>

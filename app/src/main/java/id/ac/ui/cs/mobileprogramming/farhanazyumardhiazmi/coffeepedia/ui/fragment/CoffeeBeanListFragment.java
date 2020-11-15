@@ -36,8 +36,11 @@ public class CoffeeBeanListFragment extends Fragment {
 	}
 
 	@Override
-	public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-	                         @Nullable Bundle savedInstanceState) {
+	public View onCreateView(
+		@NonNull LayoutInflater inflater,
+		@Nullable ViewGroup container,
+		@Nullable Bundle savedInstanceState
+	) {
 		mViewModel = new ViewModelProvider(requireActivity()).get(CoffeeBeanListViewModel.class);
 		mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_coffee_bean_list, container, false);
 		mCoffeeBeanAdapter = new CoffeeBeanAdapter(mCoffeeBeanClickCallback);

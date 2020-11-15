@@ -47,7 +47,6 @@ public class CoffeeBeansActivity extends AppCompatActivity {
 	}
 
 	public void showCoffeeBeanDetailFragment(CoffeeBean coffeeBean) {
-
 		CoffeeBeanDetailFragment coffeeBeanDetailFragment = CoffeeBeanDetailFragment
 			.forCoffeeBean(coffeeBean.getCoffeeBeanId());
 

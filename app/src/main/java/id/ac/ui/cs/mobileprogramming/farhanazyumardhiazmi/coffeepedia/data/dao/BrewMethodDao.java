@@ -25,4 +25,7 @@ public interface BrewMethodDao {
 	@Transaction
 	@Query("SELECT * FROM brew_methods WHERE brewMethodId = :brewMethodId")
 	LiveData<List<BrewMethodWithBrewRecipes>> getBrewMethodWithBrewRecipesByBrewMethodId(long brewMethodId);
+
+	@Query("SELECT * FROM brew_methods WHERE brewMethodId = :brewMethodId")
+	LiveData<BrewMethod> getBrewMethodById(long brewMethodId);
 }

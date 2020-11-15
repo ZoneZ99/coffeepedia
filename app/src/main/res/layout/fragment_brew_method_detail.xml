@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View"/>
+
+        <variable
+            name="brewMethodViewModel"
+            type="id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.ui.viewmodel.BrewMethodViewModel" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include
+            layout="@layout/brew_method_item"
+            app:brewMethod="@{brewMethodViewModel.brewMethod}" />
+
+        <Button
+            android:id="@+id/button_edit_brew_method"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/edit" />
+
+        <Button
+            android:id="@+id/button_delete_brew_method"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/delete" />
+
+    </LinearLayout>
+</layout>

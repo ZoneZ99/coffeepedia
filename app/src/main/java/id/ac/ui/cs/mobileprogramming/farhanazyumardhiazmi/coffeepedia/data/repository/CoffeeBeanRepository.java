@@ -50,12 +50,7 @@ public class CoffeeBeanRepository {
 	}
 
 	private void loadAllCoffeeBeans() {
-		try {
-			LoadAllAsync loadAllAsync = new LoadAllAsync(this);
-			loadAllAsync.execute();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		new LoadAllAsync(this).execute();
 	}
 
 	private static class LoadAllAsync extends AsyncTask<Void, Void, LiveData<List<CoffeeBean>>> {
@@ -79,7 +74,8 @@ public class CoffeeBeanRepository {
 					if (coffeeBeanRepositoryAsync.mDatabase.getDatabaseCreated().getValue() != null) {
 						coffeeBeanRepositoryAsync.mObservableCoffeeBeans.postValue(coffeeBeans);
 					}
-				});
+				}
+			);
 		}
 	}
 
