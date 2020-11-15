@@ -69,7 +69,7 @@ public class CoffeeBeanListFragment extends Fragment {
 
 	private final CoffeeBeanClickCallback mCoffeeBeanClickCallback = coffeeBean -> {
 		if (getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.STARTED)) {
-			((CoffeeBeansActivity) requireActivity()).show(coffeeBean);
+			((CoffeeBeansActivity) requireActivity()).showCoffeeBeanDetailFragment(coffeeBean);
 		}
 	};
 }

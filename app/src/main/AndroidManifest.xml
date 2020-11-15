@@ -23,6 +23,8 @@
 
         <activity android:name=".ui.activity.CoffeeBeansActivity"></activity>
 
+        <activity android:name=".ui.activity.CoffeeBeanEditorActivity"></activity>
+
         <activity android:name=".ui.activity.CoffeeReviewsActivity"></activity>
 
         <activity android:name=".ui.activity.BrewMethodsActivity"></activity>

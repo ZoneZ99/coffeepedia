@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.CoffeeBeanEditorActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/add_bean"
+            android:textAlignment="center" />
+
+        <TextView
+            android:labelFor="@id/input_coffee_bean_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/coffee_bean_input_name" />
+
+        <EditText
+            android:id="@+id/input_coffee_bean_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:autofillHints="Input Coffee Bean Name" />
+
+        <TextView
+            android:labelFor="@id/input_coffee_bean_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/coffee_bean_input_type" />
+
+        <EditText
+            android:id="@+id/input_coffee_bean_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:autofillHints="Input Coffee Bean Type" />
+
+        <TextView
+            android:labelFor="@id/input_coffee_bean_origin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/coffee_bean_input_origin" />
+
+        <EditText
+            android:id="@+id/input_coffee_bean_origin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:autofillHints="Input Coffee Bean Origin" />
+
+        <TextView
+            android:labelFor="@id/input_coffee_bean_altitude"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/coffee_bean_input_altitude" />
+
+        <EditText
+            android:id="@+id/input_coffee_bean_altitude"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:autofillHints="Input Coffee Bean Altitude" />
+
+        <TextView
+            android:labelFor="@id/input_coffee_bean_process"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/coffee_bean_input_process" />
+
+        <EditText
+            android:id="@+id/input_coffee_bean_process"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:autofillHints="Input Coffee Bean Process" />
+
+        <TextView
+            android:labelFor="@id/input_coffee_bean_aroma"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/coffee_bean_input_aroma" />
+
+        <EditText
+            android:id="@+id/input_coffee_bean_aroma"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:autofillHints="Input Coffee Bean Aroma" />
+
+        <TextView
+            android:labelFor="@id/input_coffee_bean_taste_note"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/coffee_bean_input_taste_note" />
+
+        <EditText
+            android:id="@+id/input_coffee_bean_taste_note"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:autofillHints="Input Coffee Bean Taste Note" />
+
+        <Button
+            android:id="@+id/button_coffee_bean_submit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/add"
+            android:onClick="submitInput" />
+
+    </LinearLayout>
+
+
+</ScrollView>

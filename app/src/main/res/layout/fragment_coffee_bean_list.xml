@@ -13,6 +13,12 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/coffee_beans"
+                android:textAlignment="center"/>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/coffee_bean_list"
                 android:layout_width="match_parent"
@@ -25,7 +31,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/add_bean"
-                android:onClick="startCoffeeBeanAddActivity"/>
+                android:onClick="startCoffeeBeanAddView"/>
 
             <Button
                 android:id="@+id/button_export_coffee_bean_list"

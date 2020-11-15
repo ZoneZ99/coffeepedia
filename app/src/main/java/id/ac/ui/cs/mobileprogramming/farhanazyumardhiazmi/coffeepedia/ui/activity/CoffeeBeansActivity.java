@@ -1,7 +1,10 @@
 package id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.data.entity.CoffeeBean;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.databinding.ActivityCoffeeBeansBinding;
@@ -12,6 +15,14 @@ public class CoffeeBeansActivity extends AppCompatActivity {
 
 	private ActivityCoffeeBeansBinding mBinding;
 
+	public static final String ADD = "add";
+
+	public static final int ADD_COFFEE_BEAN_ACTVITY_REQUEST_CODE = 1;
+
+	public static final String EDIT = "edit";
+
+	public static final int EDIT_COFFEE_BEAN_ACTIVITY_REQUEST_CODE = 2;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -20,15 +31,19 @@ public class CoffeeBeansActivity extends AppCompatActivity {
 		setContentView(view);
 
 		if (savedInstanceState == null) {
-			CoffeeBeanListFragment coffeeBeanListFragment = CoffeeBeanListFragment.newInstance();
-			getSupportFragmentManager()
-				.beginTransaction()
-				.add(mBinding.fragmentContainer.getId(), coffeeBeanListFragment, CoffeeBeanListFragment.TAG)
-				.commit();
+			showCoffeeBeanListFragment();
 		}
 	}
 
-	public void show(CoffeeBean coffeeBean) {
+	public void showCoffeeBeanListFragment() {
+		CoffeeBeanListFragment coffeeBeanListFragment = CoffeeBeanListFragment.newInstance();
+		getSupportFragmentManager()
+			.beginTransaction()
+			.add(mBinding.fragmentContainer.getId(), coffeeBeanListFragment, CoffeeBeanListFragment.TAG)
+			.commit();
+	}
+
+	public void showCoffeeBeanDetailFragment(CoffeeBean coffeeBean) {
 
 		CoffeeBeanDetailFragment coffeeBeanDetailFragment = CoffeeBeanDetailFragment
 			.forCoffeeBean(coffeeBean.getCoffeeBeanId());
@@ -38,5 +53,22 @@ public class CoffeeBeansActivity extends AppCompatActivity {
 			.addToBackStack("cofeeBean")
 			.replace(mBinding.fragmentContainer.getId(), coffeeBeanDetailFragment, null)
 			.commit();
+	}
+
+	public void startCoffeeBeanAddView(View view) {
+		Intent intent = new Intent(this, CoffeeBeanEditorActivity.class);
+		intent.putExtra(ADD, true);
+		intent.putExtra(EDIT, false);
+		startActivityForResult(intent, ADD_COFFEE_BEAN_ACTVITY_REQUEST_CODE);
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+
+		if (requestCode == ADD_COFFEE_BEAN_ACTVITY_REQUEST_CODE && resultCode == RESULT_OK) {
+			Toast.makeText(getApplicationContext(), "Coffee Bean Added", Toast.LENGTH_LONG).show();
+		} else if (requestCode == EDIT_COFFEE_BEAN_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
+		}
 	}
 }

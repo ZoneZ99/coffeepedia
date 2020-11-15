@@ -37,6 +37,10 @@ public class CoffeeBeanRepository {
 		return mDatabase.coffeeBeanDao().getCoffeeBeanById(coffeeBeanId);
 	}
 
+	public void insertCoffeeBean(CoffeeBean coffeeBean) {
+		new InsertAsync(this).execute(coffeeBean);
+	}
+
 	private void loadAllCoffeeBeans() {
 		try {
 			LoadAllAsync loadAllAsync = new LoadAllAsync(this);
@@ -68,6 +72,19 @@ public class CoffeeBeanRepository {
 						coffeeBeanRepositoryAsync.mObservableCoffeeBeans.postValue(coffeeBeans);
 					}
 				});
+		}
+	}
+
+	private static class InsertAsync extends AsyncTask<CoffeeBean, Void, Void> {
+
+		private final CoffeeBeanRepository coffeeBeanRepositoryAsync;
+
+		InsertAsync(CoffeeBeanRepository coffeeBeanRepository) { coffeeBeanRepositoryAsync = coffeeBeanRepository; }
+
+		@Override
+		protected Void doInBackground(CoffeeBean... coffeeBeans) {
+			coffeeBeanRepositoryAsync.mDatabase.coffeeBeanDao().insertCoffeeBean(coffeeBeans[0]);
+			return null;
 		}
 	}
 }

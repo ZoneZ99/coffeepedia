@@ -9,7 +9,7 @@ import java.util.List;
 @Dao
 public interface CoffeeBeanDao {
 
-	@Insert(onConflict = OnConflictStrategy.REPLACE)
+	@Insert(onConflict = OnConflictStrategy.IGNORE)
 	long insertCoffeeBean(CoffeeBean coffeeBean);
 
 	@Update(onConflict = OnConflictStrategy.REPLACE)
