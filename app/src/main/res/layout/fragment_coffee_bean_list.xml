@@ -3,18 +3,38 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.fragment.CoffeeBeanListFragment"
-        android:orientation="vertical">
+        tools:context=".ui.fragment.CoffeeBeanListFragment">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/coffee_bean_list"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
-        </androidx.recyclerview.widget.RecyclerView>
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    </LinearLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/coffee_bean_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
+            </androidx.recyclerview.widget.RecyclerView>
+
+            <Button
+                android:id="@+id/button_add_coffee_bean"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/add_bean"
+                android:onClick="startCoffeeBeanAddActivity"/>
+
+            <Button
+                android:id="@+id/button_export_coffee_bean_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/export_to_pdf" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
 </layout>
