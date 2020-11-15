@@ -33,7 +33,7 @@ public class CoffeeBeanRepository {
 		return mObservableCoffeeBeans;
 	}
 
-	public LiveData<CoffeeBean> getCoffeeBeanById(final int coffeeBeanId) {
+	public LiveData<CoffeeBean> getCoffeeBeanById(final long coffeeBeanId) {
 		return mDatabase.coffeeBeanDao().getCoffeeBeanById(coffeeBeanId);
 	}
 

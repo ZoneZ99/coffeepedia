@@ -22,5 +22,5 @@ public interface CoffeeBeanDao {
 	LiveData<List<CoffeeBean>> loadAllCoffeeBeans();
 
 	@Query("SELECT * FROM coffee_beans WHERE coffeeBeanId = :coffeeBeanId")
-	LiveData<CoffeeBean> getCoffeeBeanById(int coffeeBeanId);
+	LiveData<CoffeeBean> getCoffeeBeanById(long coffeeBeanId);
 }
