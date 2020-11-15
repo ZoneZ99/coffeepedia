@@ -41,6 +41,10 @@ public class CoffeeBeanRepository {
 		new InsertAsync(this).execute(coffeeBean);
 	}
 
+	public void deleteCoffeeBean(CoffeeBean coffeeBean) {
+		new DeleteAsync(this).execute(coffeeBean);
+	}
+
 	private void loadAllCoffeeBeans() {
 		try {
 			LoadAllAsync loadAllAsync = new LoadAllAsync(this);
@@ -84,6 +88,19 @@ public class CoffeeBeanRepository {
 		@Override
 		protected Void doInBackground(CoffeeBean... coffeeBeans) {
 			coffeeBeanRepositoryAsync.mDatabase.coffeeBeanDao().insertCoffeeBean(coffeeBeans[0]);
+			return null;
+		}
+	}
+
+	private static class DeleteAsync extends AsyncTask<CoffeeBean, Void, Void> {
+
+		private final CoffeeBeanRepository coffeeBeanRepositoryAsync;
+
+		DeleteAsync(CoffeeBeanRepository coffeeBeanRepository) { coffeeBeanRepositoryAsync = coffeeBeanRepository; }
+
+		@Override
+		protected Void doInBackground(CoffeeBean... coffeeBeans) {
+			coffeeBeanRepositoryAsync.mDatabase.coffeeBeanDao().deleteCoffeeBean(coffeeBeans[0]);
 			return null;
 		}
 	}

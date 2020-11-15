@@ -14,4 +14,5 @@
     <string name="coffee_bean_input_aroma">Aroma</string>
     <string name="coffee_bean_input_taste_note">Taste Note</string>
     <string name="add">Add</string>
+    <string name="delete">Delete</string>
 </resources>

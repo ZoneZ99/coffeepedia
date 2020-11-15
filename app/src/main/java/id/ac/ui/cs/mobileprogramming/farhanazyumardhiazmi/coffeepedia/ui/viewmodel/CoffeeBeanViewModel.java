@@ -14,6 +14,8 @@ public class CoffeeBeanViewModel extends AndroidViewModel {
 
 	private final LiveData<CoffeeBean> mObservableCoffeeBean;
 
+	private final CoffeeBeanRepository mCoffeeBeanRepository;
+
 	private final long mCoffeeBeanId;
 
 	public CoffeeBeanViewModel(
@@ -23,11 +25,16 @@ public class CoffeeBeanViewModel extends AndroidViewModel {
 	) {
 		super(application);
 		mCoffeeBeanId = coffeeBeanId;
+		mCoffeeBeanRepository = coffeeBeanRepository;
 		mObservableCoffeeBean = coffeeBeanRepository.getCoffeeBeanById(mCoffeeBeanId);
 	}
 
 	public LiveData<CoffeeBean> getCoffeeBean() {
 		return mObservableCoffeeBean;
+	}
+
+	public void deleteCoffeeBean(CoffeeBean coffeeBean) {
+		mCoffeeBeanRepository.deleteCoffeeBean(coffeeBean);
 	}
 
 	public static class Factory extends ViewModelProvider.NewInstanceFactory {

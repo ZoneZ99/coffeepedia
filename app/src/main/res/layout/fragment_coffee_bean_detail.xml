@@ -21,5 +21,11 @@
             layout="@layout/coffee_bean_item"
             app:coffeeBean="@{coffeeBeanViewModel.coffeeBean}" />
 
+        <Button
+            android:id="@+id/button_delete_coffee_bean"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/delete" />
+
     </LinearLayout>
 </layout>

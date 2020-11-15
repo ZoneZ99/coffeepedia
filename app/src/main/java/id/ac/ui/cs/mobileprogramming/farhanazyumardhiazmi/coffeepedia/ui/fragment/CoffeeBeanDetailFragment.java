@@ -4,18 +4,22 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.R;
+import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.data.entity.CoffeeBean;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.databinding.FragmentCoffeeBeanDetailBinding;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.ui.viewmodel.CoffeeBeanViewModel;
 
 public class CoffeeBeanDetailFragment extends Fragment {
 
 	private FragmentCoffeeBeanDetailBinding mBinding;
+
+	private CoffeeBeanViewModel mViewModel;
 
 	@Nullable
 	@Override
@@ -34,9 +38,10 @@ public class CoffeeBeanDetailFragment extends Fragment {
 			requireActivity().getApplication(),
 			requireArguments().getLong("coffee_bean_id")
 		);
-		final CoffeeBeanViewModel viewModel = new ViewModelProvider(this, factory).get(CoffeeBeanViewModel.class);
+		mViewModel = new ViewModelProvider(this, factory).get(CoffeeBeanViewModel.class);
 		mBinding.setLifecycleOwner(getViewLifecycleOwner());
-		mBinding.setCoffeeBeanViewModel(viewModel);
+		mBinding.setCoffeeBeanViewModel(mViewModel);
+		mBinding.buttonDeleteCoffeeBean.setOnClickListener(new DeleteButtonOnClickListener());
 	}
 
 	@Override
@@ -51,5 +56,16 @@ public class CoffeeBeanDetailFragment extends Fragment {
 		args.putLong("coffee_bean_id", coffeeBeanId);
 		fragment.setArguments(args);
 		return fragment;
+	}
+
+	private class DeleteButtonOnClickListener implements View.OnClickListener {
+
+		@Override
+		public void onClick(View v) {
+			CoffeeBean deletedCoffeeBean = mViewModel.getCoffeeBean().getValue();
+			mViewModel.deleteCoffeeBean(deletedCoffeeBean);
+			Toast.makeText(getContext(), "Coffee Bean deleted.", Toast.LENGTH_LONG).show();
+			getActivity().onBackPressed();
+		}
 	}
 }
