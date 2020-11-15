@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.R;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.data.entity.CoffeeBean;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.databinding.FragmentCoffeeBeanDetailBinding;
+import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.ui.activity.CoffeeBeansActivity;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.ui.viewmodel.CoffeeBeanViewModel;
 
 public class CoffeeBeanDetailFragment extends Fragment {
@@ -42,6 +43,7 @@ public class CoffeeBeanDetailFragment extends Fragment {
 		mBinding.setLifecycleOwner(getViewLifecycleOwner());
 		mBinding.setCoffeeBeanViewModel(mViewModel);
 		mBinding.buttonDeleteCoffeeBean.setOnClickListener(new DeleteButtonOnClickListener());
+		mBinding.buttonEditCoffeeBean.setOnClickListener(new EditButtonOnClickListener());
 	}
 
 	@Override
@@ -64,8 +66,17 @@ public class CoffeeBeanDetailFragment extends Fragment {
 		public void onClick(View v) {
 			CoffeeBean deletedCoffeeBean = mViewModel.getCoffeeBean().getValue();
 			mViewModel.deleteCoffeeBean(deletedCoffeeBean);
-			Toast.makeText(getContext(), "Coffee Bean deleted.", Toast.LENGTH_LONG).show();
+			Toast.makeText(getContext(), R.string.success_delete_coffee_bean, Toast.LENGTH_LONG).show();
 			getActivity().onBackPressed();
+		}
+	}
+
+	private class EditButtonOnClickListener implements View.OnClickListener {
+
+		@Override
+		public void onClick(View v) {
+			CoffeeBean editedCoffeeBean = mViewModel.getCoffeeBean().getValue();
+			((CoffeeBeansActivity) getActivity()).startCoffeeBeanEditView(editedCoffeeBean);
 		}
 	}
 }

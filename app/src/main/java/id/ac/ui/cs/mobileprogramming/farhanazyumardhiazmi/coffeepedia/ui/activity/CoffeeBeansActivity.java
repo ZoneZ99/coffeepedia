@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.R;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.data.entity.CoffeeBean;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.databinding.ActivityCoffeeBeansBinding;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.ui.fragment.CoffeeBeanDetailFragment;
@@ -22,6 +23,8 @@ public class CoffeeBeansActivity extends AppCompatActivity {
 	public static final String EDIT = "edit";
 
 	public static final int EDIT_COFFEE_BEAN_ACTIVITY_REQUEST_CODE = 2;
+
+	public static final String COFFEE_BEAN = "coffee_bean";
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -62,13 +65,22 @@ public class CoffeeBeansActivity extends AppCompatActivity {
 		startActivityForResult(intent, ADD_COFFEE_BEAN_ACTVITY_REQUEST_CODE);
 	}
 
+	public void startCoffeeBeanEditView(CoffeeBean coffeeBean) {
+		Intent intent = new Intent(this, CoffeeBeanEditorActivity.class);
+		intent.putExtra(ADD, false);
+		intent.putExtra(EDIT, true);
+		intent.putExtra(COFFEE_BEAN, coffeeBean);
+		startActivityForResult(intent, EDIT_COFFEE_BEAN_ACTIVITY_REQUEST_CODE);
+	}
+
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 
 		if (requestCode == ADD_COFFEE_BEAN_ACTVITY_REQUEST_CODE && resultCode == RESULT_OK) {
-			Toast.makeText(getApplicationContext(), "Coffee Bean Added", Toast.LENGTH_LONG).show();
+			Toast.makeText(getApplicationContext(), R.string.success_add_coffee_bean, Toast.LENGTH_LONG).show();
 		} else if (requestCode == EDIT_COFFEE_BEAN_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
+			Toast.makeText(getApplicationContext(), R.string.success_edit_coffee_bean, Toast.LENGTH_LONG).show();
 		}
 	}
 }

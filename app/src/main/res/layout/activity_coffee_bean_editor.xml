@@ -12,9 +12,9 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/title_coffee_bean_editor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/add_bean"
             android:textAlignment="center" />
 
         <TextView
@@ -111,9 +111,7 @@
         <Button
             android:id="@+id/button_coffee_bean_submit"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/add"
-            android:onClick="submitInput" />
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 
