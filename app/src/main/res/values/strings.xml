@@ -30,4 +30,11 @@
     <string name="success_edit_brew_method">Brew method edited</string>
     <string name="success_delete_brew_method">Brew method deleted</string>
     <string name="brew_recipes">Brew Recipes</string>
+    <string name="add_brew_recipe">Add Brew Recipe</string>
+    <string name="brew_recipe_input_name">Name</string>
+    <string name="brew_recipe_input_roast_level">Roast Level</string>
+    <string name="brew_recipe_input_grind_level">Grind Level</string>
+    <string name="brew_recipe_input_water_temperature">Water Temperature</string>
+    <string name="brew_recipe_input_brew_time">Brew Time</string>
+    <string name="brew_recipe_input_brew_steps">Brew Steps</string>
 </resources>

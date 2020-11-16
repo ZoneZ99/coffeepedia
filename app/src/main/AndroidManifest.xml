@@ -33,7 +33,7 @@
 
         <activity android:name=".ui.activity.BrewRecipesActivity"></activity>
 
-<!--        <activity android:name=".ui.activity.BrewRecipeFormActivity"></activity>-->
+        <activity android:name=".ui.activity.BrewRecipeFormActivity"></activity>
 
         <service android:name=".service.CoffeeReviewScrapingService"></service>
 

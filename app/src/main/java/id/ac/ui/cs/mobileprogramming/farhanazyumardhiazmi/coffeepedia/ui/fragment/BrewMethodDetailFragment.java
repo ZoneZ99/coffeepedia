@@ -1,5 +1,6 @@
 package id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.ui.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,11 +10,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.ViewModelProvider;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.R;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.data.entity.BrewMethod;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.databinding.FragmentBrewMethodDetailBinding;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.ui.activity.BrewMethodsActivity;
+import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.ui.activity.BrewRecipeFormActivity;
+import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.ui.callback.BrewMethodClickCallback;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.ui.viewmodel.BrewMethodViewModel;
 
 public class BrewMethodDetailFragment extends Fragment {
@@ -32,6 +36,7 @@ public class BrewMethodDetailFragment extends Fragment {
 		@Nullable Bundle savedInstanceState
 	) {
 		mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_brew_method_detail, container, false);
+		mBinding.setCallback(mBrewMethodClickCallback);
 		return mBinding.getRoot();
 	}
 
@@ -61,6 +66,15 @@ public class BrewMethodDetailFragment extends Fragment {
 		fragment.setArguments(args);
 		return fragment;
 	}
+
+	private final BrewMethodClickCallback mBrewMethodClickCallback = brewMethod -> {
+		if (getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.STARTED)) {
+			Intent intent = new Intent(getActivity(), BrewRecipeFormActivity.class);
+			intent.putExtra(BrewRecipeFormActivity.IS_EDIT, false);
+			intent.putExtra(BREW_METHOD_ID, brewMethod.getBrewMethodId());
+			startActivity(intent);
+		}
+	};
 
 	private class DeleteButtonOnClickListener implements View.OnClickListener {
 

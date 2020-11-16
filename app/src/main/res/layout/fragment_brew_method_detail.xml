@@ -10,6 +10,10 @@
             name="brewMethodViewModel"
             type="id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.ui.viewmodel.BrewMethodViewModel" />
 
+        <variable
+            name="callback"
+            type="id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.ui.callback.BrewMethodClickCallback" />
+
     </data>
 
     <LinearLayout
@@ -20,6 +24,13 @@
         <include
             layout="@layout/brew_method_item"
             app:brewMethod="@{brewMethodViewModel.brewMethod}" />
+
+        <Button
+            android:id="@+id/button_add_brew_recipe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/add_brew_recipe"
+            android:onClick="@{() -> callback.onClick(brewMethodViewModel.brewMethod)}"/>
 
         <Button
             android:id="@+id/button_edit_brew_method"
