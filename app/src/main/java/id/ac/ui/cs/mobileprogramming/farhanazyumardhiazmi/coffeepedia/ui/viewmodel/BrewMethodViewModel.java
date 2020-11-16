@@ -8,7 +8,6 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.CoffeePediaApplication;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.data.entity.BrewMethod;
-import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.data.entity.relation.BrewMethodWithBrewRecipes;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.data.repository.BrewMethodRepository;
 
 public class BrewMethodViewModel extends AndroidViewModel {
@@ -17,17 +16,14 @@ public class BrewMethodViewModel extends AndroidViewModel {
 
 	private final BrewMethodRepository mBrewMethodRepository;
 
-	private final long mBrewMethodId;
-
 	public BrewMethodViewModel(
 		@NonNull Application application,
 		BrewMethodRepository brewMethodRepository,
 		final long brewMethodId
 	) {
 		super(application);
-		mBrewMethodId = brewMethodId;
 		mBrewMethodRepository = brewMethodRepository;
-		mObservableBrewMethod = brewMethodRepository.getBrewMethodById(mBrewMethodId);
+		mObservableBrewMethod = brewMethodRepository.getBrewMethodById(brewMethodId);
 	}
 
 	public LiveData<BrewMethod> getBrewMethod() { return mObservableBrewMethod; }

@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.R;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.data.entity.BrewRecipe;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.databinding.ActivityBrewRecipesBinding;
+import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.ui.fragment.BrewRecipeDetailFragment;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.ui.fragment.BrewRecipeListFragment;
 
 public class BrewRecipesActivity extends AppCompatActivity {
@@ -41,6 +42,13 @@ public class BrewRecipesActivity extends AppCompatActivity {
 	}
 
 	public void showBrewRecipeDetailFragment(BrewRecipe brewRecipe) {
+		BrewRecipeDetailFragment brewRecipeDetailFragment = BrewRecipeDetailFragment
+			.forBrewRecipe(brewRecipe.getBrewRecipeId());
 
+		getSupportFragmentManager()
+			.beginTransaction()
+			.addToBackStack("brewRecipe")
+			.replace(mBinding.fragmentContainer.getId(), brewRecipeDetailFragment, null)
+			.commit();
 	}
 }

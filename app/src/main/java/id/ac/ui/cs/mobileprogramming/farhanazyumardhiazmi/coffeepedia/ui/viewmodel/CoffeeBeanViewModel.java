@@ -16,17 +16,14 @@ public class CoffeeBeanViewModel extends AndroidViewModel {
 
 	private final CoffeeBeanRepository mCoffeeBeanRepository;
 
-	private final long mCoffeeBeanId;
-
 	public CoffeeBeanViewModel(
 		@NonNull Application application,
 		CoffeeBeanRepository coffeeBeanRepository,
 		final long coffeeBeanId
 	) {
 		super(application);
-		mCoffeeBeanId = coffeeBeanId;
 		mCoffeeBeanRepository = coffeeBeanRepository;
-		mObservableCoffeeBean = coffeeBeanRepository.getCoffeeBeanById(mCoffeeBeanId);
+		mObservableCoffeeBean = coffeeBeanRepository.getCoffeeBeanById(coffeeBeanId);
 	}
 
 	public LiveData<CoffeeBean> getCoffeeBean() {
