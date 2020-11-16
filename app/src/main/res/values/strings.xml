@@ -28,4 +28,5 @@
     <string name="edit_brew_method">Edit Brew Method</string>
     <string name="success_add_brew_method">Brew method added</string>
     <string name="success_edit_brew_method">Brew method edited</string>
+    <string name="success_delete_brew_method">Brew method deleted</string>
 </resources>

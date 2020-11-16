@@ -68,7 +68,7 @@ public class CoffeeBeanDetailFragment extends Fragment {
 		public void onClick(View v) {
 			CoffeeBean deletedCoffeeBean = mViewModel.getCoffeeBean().getValue();
 			mViewModel.deleteCoffeeBean(deletedCoffeeBean);
-			Toast.makeText(getContext(), R.string.success_delete_coffee_bean, Toast.LENGTH_LONG).show();
+			Toast.makeText(getContext(), R.string.success_delete_coffee_bean, Toast.LENGTH_SHORT).show();
 			getActivity().onBackPressed();
 		}
 	}

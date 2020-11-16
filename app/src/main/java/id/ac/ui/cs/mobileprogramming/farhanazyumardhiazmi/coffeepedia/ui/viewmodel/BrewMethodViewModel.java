@@ -32,6 +32,10 @@ public class BrewMethodViewModel extends AndroidViewModel {
 
 	public LiveData<BrewMethod> getBrewMethod() { return mObservableBrewMethod; }
 
+	public void deleteBrewMethod(BrewMethod deletedBrewMethod) {
+		mBrewMethodRepository.deleteBrewMethod(deletedBrewMethod);
+	}
+
 	public static class Factory extends ViewModelProvider.NewInstanceFactory {
 
 		@NonNull
