@@ -1,6 +1,7 @@
 package id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.data;
 
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.data.entity.BrewMethod;
+import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.data.entity.BrewRecipe;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.data.entity.CoffeeBean;
 
 import java.util.ArrayList;
@@ -11,7 +12,8 @@ public class DataGenerator {
 	public static List<CoffeeBean> generateCoffeeBeans() {
 		List<CoffeeBean> coffeeBeans = new ArrayList<>(10);
 		for (int i = 0; i < 10; i++) {
-			CoffeeBean coffeeBean = CoffeeBean.builder()
+			CoffeeBean coffeeBean = CoffeeBean
+				.builder()
 				.name(String.valueOf(i))
 				.altitude("A")
 				.aroma("A")
@@ -19,7 +21,6 @@ public class DataGenerator {
 				.process("A")
 				.tasteNote("A")
 				.type("A")
-				.coffeeBeanId((long) i+1)
 				.build();
 			coffeeBeans.add(coffeeBean);
 		}
@@ -29,12 +30,30 @@ public class DataGenerator {
 	public static List<BrewMethod> generateBrewMethods() {
 		List<BrewMethod> brewMethods = new ArrayList<>(10);
 		for (int i = 0; i < 10; i++) {
-			BrewMethod brewMethod = BrewMethod.builder()
+			BrewMethod brewMethod = BrewMethod
+				.builder()
 				.name(String.valueOf(i))
 				.description("A")
 				.build();
 			brewMethods.add(brewMethod);
 		}
 		return brewMethods;
+	}
+
+	public static List<BrewRecipe> generateBrewRecipes() {
+		List<BrewRecipe> brewRecipes = new ArrayList<>(10);
+		for (int i = 0; i < 10; i++) {
+			BrewRecipe brewRecipe = BrewRecipe
+				.builder()
+				.brewSteps("A")
+				.brewTime("A")
+				.grindLevel("A")
+				.roastLevel("A")
+				.name(String.valueOf(i))
+				.waterTemperature("A")
+				.build();
+			brewRecipes.add(brewRecipe);
+		}
+		return brewRecipes;
 	}
 }

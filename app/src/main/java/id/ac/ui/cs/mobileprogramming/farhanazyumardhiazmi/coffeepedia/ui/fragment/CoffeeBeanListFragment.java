@@ -56,8 +56,6 @@ public class CoffeeBeanListFragment extends Fragment {
 		coffeeBeans.observe(getViewLifecycleOwner(), beans -> {
 			if (beans != null) {
 				mCoffeeBeanAdapter.setCoffeeBeanList(beans);
-			} else {
-
 			}
 			mBinding.executePendingBindings();
 		});

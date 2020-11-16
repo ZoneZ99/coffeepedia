@@ -3,6 +3,7 @@ package id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia;
 import android.app.Application;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.data.CoffeePediaDatabase;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.data.repository.BrewMethodRepository;
+import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.data.repository.BrewRecipeRepository;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.data.repository.CoffeeBeanRepository;
 
 public class CoffeePediaApplication extends Application {
@@ -25,5 +26,9 @@ public class CoffeePediaApplication extends Application {
 
 	public BrewMethodRepository getBrewMethodRepository() {
 		return BrewMethodRepository.getInstance(getDatabase());
+	}
+
+	public BrewRecipeRepository getBrewRecipeRepository() {
+		return BrewRecipeRepository.getInstance(getDatabase());
 	}
 }

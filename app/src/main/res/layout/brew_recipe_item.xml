@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="brewRecipe"
+            type="id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.data.entity.BrewRecipe"/>
+
+        <variable
+            name="callback"
+            type="id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.ui.callback.BrewRecipeClickCallback" />
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> callback.onClick(brewRecipe)}"
+        android:orientation="vertical"
+        app:cardUseCompatPadding="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{brewRecipe.name}" />
+
+            <TextView
+                android:id="@+id/roast_level"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{brewRecipe.roastLevel}" />
+
+            <TextView
+                android:id="@+id/grind_level"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{brewRecipe.grindLevel}" />
+
+            <TextView
+                android:id="@+id/water_temperature"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{brewRecipe.waterTemperature}" />
+
+            <TextView
+                android:id="@+id/brew_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{brewRecipe.brewTime}" />
+
+            <TextView
+                android:id="@+id/brew_steps"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{brewRecipe.brewSteps}" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</layout>

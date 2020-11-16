@@ -29,9 +29,11 @@
 
         <activity android:name=".ui.activity.BrewMethodsActivity"></activity>
 
+        <activity android:name=".ui.activity.BrewMethodFormActivity"></activity>
+
         <activity android:name=".ui.activity.BrewRecipesActivity"></activity>
 
-        <activity android:name=".ui.activity.BrewMethodFormActivity"></activity>
+<!--        <activity android:name=".ui.activity.BrewRecipeFormActivity"></activity>-->
 
         <service android:name=".service.CoffeeReviewScrapingService"></service>
 

@@ -20,4 +20,7 @@ public interface BrewRecipeDao {
 
 	@Query("SELECT * FROM brew_recipes")
 	LiveData<List<BrewRecipe>> loadAllBrewRecipes();
+
+	@Query("SELECT * FROM brew_recipes WHERE brewRecipeId = :brewRecipeId")
+	LiveData<BrewRecipe> getBrewRecipeById(long brewRecipeId);
 }
