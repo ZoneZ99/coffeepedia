@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
@@ -44,6 +45,7 @@ public class BrewRecipeDetailFragment extends Fragment {
 		mBinding.setLifecycleOwner(getViewLifecycleOwner());
 		mBinding.setBrewRecipeViewModel(mViewModel);
 		mBinding.buttonEditBrewRecipe.setOnClickListener(new EditButtonOnClickListener());
+		mBinding.buttonDeleteBrewRecipe.setOnClickListener(new DeleteButtonOnClickListener());
 	}
 
 	@Override
@@ -58,6 +60,17 @@ public class BrewRecipeDetailFragment extends Fragment {
 		args.putLong(BREW_RECIPE_ID, brewRecipeId);
 		fragment.setArguments(args);
 		return fragment;
+	}
+
+	private class DeleteButtonOnClickListener implements View.OnClickListener {
+
+		@Override
+		public void onClick(View v) {
+			BrewRecipe deletedBrewRecipe = mViewModel.getBrewRecipe().getValue();
+			mViewModel.deleteBrewRecipe(deletedBrewRecipe);
+			Toast.makeText(getContext(), R.string.success_delete_brew_recipe, Toast.LENGTH_SHORT).show();
+			getActivity().onBackPressed();
+		}
 	}
 
 	private class EditButtonOnClickListener implements View.OnClickListener {
