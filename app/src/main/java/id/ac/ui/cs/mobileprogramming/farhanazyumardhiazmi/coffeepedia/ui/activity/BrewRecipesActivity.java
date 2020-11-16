@@ -1,9 +1,9 @@
 package id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
-import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.R;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.data.entity.BrewRecipe;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.databinding.ActivityBrewRecipesBinding;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.ui.fragment.BrewRecipeDetailFragment;
@@ -50,5 +50,12 @@ public class BrewRecipesActivity extends AppCompatActivity {
 			.addToBackStack("brewRecipe")
 			.replace(mBinding.fragmentContainer.getId(), brewRecipeDetailFragment, null)
 			.commit();
+	}
+
+	public void startBrewRecipeEditView(BrewRecipe brewRecipe) {
+		Intent intent = new Intent(this, BrewRecipeFormActivity.class);
+		intent.putExtra(BrewRecipeFormActivity.IS_EDIT, true);
+		intent.putExtra(BREW_RECIPE, brewRecipe);
+		startActivity(intent);
 	}
 }

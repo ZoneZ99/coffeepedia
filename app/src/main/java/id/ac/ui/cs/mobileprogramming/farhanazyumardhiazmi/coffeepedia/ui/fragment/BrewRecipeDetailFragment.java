@@ -10,7 +10,9 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.R;
+import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.data.entity.BrewRecipe;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.databinding.FragmentBrewRecipeDetailBinding;
+import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.ui.activity.BrewRecipesActivity;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.ui.viewmodel.BrewRecipeViewModel;
 
 public class BrewRecipeDetailFragment extends Fragment {
@@ -41,6 +43,7 @@ public class BrewRecipeDetailFragment extends Fragment {
 		mViewModel = new ViewModelProvider(this, factory).get(BrewRecipeViewModel.class);
 		mBinding.setLifecycleOwner(getViewLifecycleOwner());
 		mBinding.setBrewRecipeViewModel(mViewModel);
+		mBinding.buttonEditBrewRecipe.setOnClickListener(new EditButtonOnClickListener());
 	}
 
 	@Override
@@ -55,5 +58,14 @@ public class BrewRecipeDetailFragment extends Fragment {
 		args.putLong(BREW_RECIPE_ID, brewRecipeId);
 		fragment.setArguments(args);
 		return fragment;
+	}
+
+	private class EditButtonOnClickListener implements View.OnClickListener {
+
+		@Override
+		public void onClick(View v) {
+			BrewRecipe editedBrewRecipe = mViewModel.getBrewRecipe().getValue();
+			((BrewRecipesActivity) getActivity()).startBrewRecipeEditView(editedBrewRecipe);
+		}
 	}
 }

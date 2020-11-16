@@ -37,4 +37,7 @@
     <string name="brew_recipe_input_water_temperature">Water Temperature</string>
     <string name="brew_recipe_input_brew_time">Brew Time</string>
     <string name="brew_recipe_input_brew_steps">Brew Steps</string>
+    <string name="edit_brew_recipe">Edit Brew Recipe</string>
+    <string name="success_add_brew_recipe">Brew Recipe Added</string>
+    <string name="success_edit_brew_recipe">Brew Recipe edited</string>
 </resources>
