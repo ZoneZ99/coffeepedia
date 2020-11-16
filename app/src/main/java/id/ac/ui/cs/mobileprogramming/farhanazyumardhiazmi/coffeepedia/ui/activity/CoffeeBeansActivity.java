@@ -18,7 +18,7 @@ public class CoffeeBeansActivity extends AppCompatActivity {
 
 	public static final String ADD = "add";
 
-	public static final int ADD_COFFEE_BEAN_ACTVITY_REQUEST_CODE = 1;
+	public static final int ADD_COFFEE_BEAN_ACTIVITY_REQUEST_CODE = 1;
 
 	public static final String EDIT = "edit";
 
@@ -58,14 +58,14 @@ public class CoffeeBeansActivity extends AppCompatActivity {
 	}
 
 	public void startCoffeeBeanAddView(View view) {
-		Intent intent = new Intent(this, CoffeeBeanEditorActivity.class);
+		Intent intent = new Intent(this, CoffeeBeanFormActivity.class);
 		intent.putExtra(ADD, true);
 		intent.putExtra(EDIT, false);
-		startActivityForResult(intent, ADD_COFFEE_BEAN_ACTVITY_REQUEST_CODE);
+		startActivityForResult(intent, ADD_COFFEE_BEAN_ACTIVITY_REQUEST_CODE);
 	}
 
 	public void startCoffeeBeanEditView(CoffeeBean coffeeBean) {
-		Intent intent = new Intent(this, CoffeeBeanEditorActivity.class);
+		Intent intent = new Intent(this, CoffeeBeanFormActivity.class);
 		intent.putExtra(ADD, false);
 		intent.putExtra(EDIT, true);
 		intent.putExtra(COFFEE_BEAN, coffeeBean);
@@ -76,7 +76,7 @@ public class CoffeeBeansActivity extends AppCompatActivity {
 	protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 
-		if (requestCode == ADD_COFFEE_BEAN_ACTVITY_REQUEST_CODE && resultCode == RESULT_OK) {
+		if (requestCode == ADD_COFFEE_BEAN_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
 			Toast.makeText(getApplicationContext(), R.string.success_add_coffee_bean, Toast.LENGTH_LONG).show();
 		} else if (requestCode == EDIT_COFFEE_BEAN_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
 			Toast.makeText(getApplicationContext(), R.string.success_edit_coffee_bean, Toast.LENGTH_LONG).show();

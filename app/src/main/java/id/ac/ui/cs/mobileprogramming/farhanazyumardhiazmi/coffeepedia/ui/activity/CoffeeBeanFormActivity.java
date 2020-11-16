@@ -11,19 +11,19 @@ import androidx.lifecycle.ViewModelProvider;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.R;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.data.entity.CoffeeBean;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.databinding.ActivityCoffeeBeanEditorBinding;
-import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.ui.viewmodel.CoffeeBeanEditorViewModel;
+import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.ui.viewmodel.CoffeeBeanFormViewModel;
 
-public class CoffeeBeanEditorActivity extends AppCompatActivity {
+public class CoffeeBeanFormActivity extends AppCompatActivity {
 
 	private ActivityCoffeeBeanEditorBinding mBinding;
 
-	private CoffeeBeanEditorViewModel mViewModel;
+	private CoffeeBeanFormViewModel mViewModel;
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		mBinding = ActivityCoffeeBeanEditorBinding.inflate(getLayoutInflater());
-		mViewModel = new ViewModelProvider(this).get(CoffeeBeanEditorViewModel.class);
+		mViewModel = new ViewModelProvider(this).get(CoffeeBeanFormViewModel.class);
 		View view = mBinding.getRoot();
 		setContentView(view);
 
@@ -75,7 +75,7 @@ public class CoffeeBeanEditorActivity extends AppCompatActivity {
 				setResult(RESULT_OK, replyIntent);
 				finish();
 			} else {
-				Toast.makeText(getApplicationContext(), "Please fill all fields.", Toast.LENGTH_LONG).show();
+				Toast.makeText(getApplicationContext(), R.string.form_invalid_text, Toast.LENGTH_SHORT).show();
 			}
 		}
 	}
@@ -99,7 +99,7 @@ public class CoffeeBeanEditorActivity extends AppCompatActivity {
 				setResult(RESULT_OK, replyIntent);
 				finish();
 			} else {
-				Toast.makeText(getApplicationContext(), "Please fill all fields.", Toast.LENGTH_LONG).show();
+				Toast.makeText(getApplicationContext(), R.string.form_invalid_text, Toast.LENGTH_SHORT).show();
 			}
 		}
 	}

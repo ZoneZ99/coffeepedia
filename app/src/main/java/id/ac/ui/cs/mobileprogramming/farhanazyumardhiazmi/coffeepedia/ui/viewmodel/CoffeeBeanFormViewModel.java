@@ -9,13 +9,13 @@ import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.CoffeePedi
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.data.entity.CoffeeBean;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.data.repository.CoffeeBeanRepository;
 
-public class CoffeeBeanEditorViewModel extends AndroidViewModel {
+public class CoffeeBeanFormViewModel extends AndroidViewModel {
 
     private MutableLiveData<CoffeeBean> mObservableCoffeeBean;
 
     private final CoffeeBeanRepository mCoffeeBeanRepository;
 
-    public CoffeeBeanEditorViewModel(@NonNull Application application) {
+    public CoffeeBeanFormViewModel(@NonNull Application application) {
         super(application);
         mObservableCoffeeBean = new MutableLiveData<>();
         mCoffeeBeanRepository = ((CoffeePediaApplication) application).getCoffeeBeanRepository();
