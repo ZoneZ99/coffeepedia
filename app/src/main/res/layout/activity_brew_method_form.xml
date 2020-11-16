@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.BrewMethodFormActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/title_brew_method_form"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center" />
+
+        <TextView
+            android:labelFor="@id/input_brew_method_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/brew_method_input_name" />
+
+        <EditText
+            android:id="@+id/input_brew_method_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:autofillHints="Input Brew Method Name" />
+
+        <TextView
+            android:labelFor="@id/input_brew_method_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/brew_method_input_description" />
+
+        <EditText
+            android:id="@+id/input_brew_method_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:autofillHints="Input Brew Method Description" />
+
+        <Button
+            android:id="@+id/button_brew_method_submit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+
+</ScrollView>

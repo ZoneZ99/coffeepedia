@@ -16,11 +16,9 @@ public class CoffeeBeansActivity extends AppCompatActivity {
 
 	private ActivityCoffeeBeansBinding mBinding;
 
-	public static final String ADD = "add";
+	public static final String IS_EDIT = "is_edit";
 
 	public static final int ADD_COFFEE_BEAN_ACTIVITY_REQUEST_CODE = 1;
-
-	public static final String EDIT = "edit";
 
 	public static final int EDIT_COFFEE_BEAN_ACTIVITY_REQUEST_CODE = 2;
 
@@ -59,15 +57,13 @@ public class CoffeeBeansActivity extends AppCompatActivity {
 
 	public void startCoffeeBeanAddView(View view) {
 		Intent intent = new Intent(this, CoffeeBeanFormActivity.class);
-		intent.putExtra(ADD, true);
-		intent.putExtra(EDIT, false);
+		intent.putExtra(IS_EDIT, false);
 		startActivityForResult(intent, ADD_COFFEE_BEAN_ACTIVITY_REQUEST_CODE);
 	}
 
 	public void startCoffeeBeanEditView(CoffeeBean coffeeBean) {
 		Intent intent = new Intent(this, CoffeeBeanFormActivity.class);
-		intent.putExtra(ADD, false);
-		intent.putExtra(EDIT, true);
+		intent.putExtra(IS_EDIT, true);
 		intent.putExtra(COFFEE_BEAN, coffeeBean);
 		startActivityForResult(intent, EDIT_COFFEE_BEAN_ACTIVITY_REQUEST_CODE);
 	}
@@ -77,9 +73,9 @@ public class CoffeeBeansActivity extends AppCompatActivity {
 		super.onActivityResult(requestCode, resultCode, data);
 
 		if (requestCode == ADD_COFFEE_BEAN_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
-			Toast.makeText(getApplicationContext(), R.string.success_add_coffee_bean, Toast.LENGTH_LONG).show();
+			Toast.makeText(getApplicationContext(), R.string.success_add_coffee_bean, Toast.LENGTH_SHORT).show();
 		} else if (requestCode == EDIT_COFFEE_BEAN_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
-			Toast.makeText(getApplicationContext(), R.string.success_edit_coffee_bean, Toast.LENGTH_LONG).show();
+			Toast.makeText(getApplicationContext(), R.string.success_edit_coffee_bean, Toast.LENGTH_SHORT).show();
 		}
 	}
 }

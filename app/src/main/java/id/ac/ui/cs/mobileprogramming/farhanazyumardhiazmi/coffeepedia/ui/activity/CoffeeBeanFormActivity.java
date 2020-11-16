@@ -10,26 +10,26 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.R;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.data.entity.CoffeeBean;
-import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.databinding.ActivityCoffeeBeanEditorBinding;
+import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.databinding.ActivityCoffeeBeanFormBinding;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.ui.viewmodel.CoffeeBeanFormViewModel;
 
 public class CoffeeBeanFormActivity extends AppCompatActivity {
 
-	private ActivityCoffeeBeanEditorBinding mBinding;
+	private ActivityCoffeeBeanFormBinding mBinding;
 
 	private CoffeeBeanFormViewModel mViewModel;
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		mBinding = ActivityCoffeeBeanEditorBinding.inflate(getLayoutInflater());
+		mBinding = ActivityCoffeeBeanFormBinding.inflate(getLayoutInflater());
 		mViewModel = new ViewModelProvider(this).get(CoffeeBeanFormViewModel.class);
 		View view = mBinding.getRoot();
 		setContentView(view);
 
 		Bundle bundle = getIntent().getExtras();
 		if (bundle != null) {
-			if (bundle.getBoolean(CoffeeBeansActivity.EDIT)) {
+			if (bundle.getBoolean(CoffeeBeansActivity.IS_EDIT)) {
 				CoffeeBean coffeeBean = bundle.getParcelable(CoffeeBeansActivity.COFFEE_BEAN);
 				if (coffeeBean != null) {
 					mViewModel.setCoffeeBean(coffeeBean);
@@ -43,12 +43,12 @@ public class CoffeeBeanFormActivity extends AppCompatActivity {
 						mBinding.inputCoffeeBeanTasteNote.setText(bean.getTasteNote());
 					});
 				}
-				mBinding.titleCoffeeBeanEditor.setText(getString(R.string.edit_bean));
-				mBinding.buttonCoffeeBeanSubmit.setText(getString(R.string.edit));
+				mBinding.titleCoffeeBeanForm.setText(R.string.edit_bean);
+				mBinding.buttonCoffeeBeanSubmit.setText(R.string.edit);
 				mBinding.buttonCoffeeBeanSubmit.setOnClickListener(new EditCoffeeBean());
 			} else {
-				mBinding.titleCoffeeBeanEditor.setText(getString(R.string.add_bean));
-				mBinding.buttonCoffeeBeanSubmit.setText(getString(R.string.add));
+				mBinding.titleCoffeeBeanForm.setText(R.string.add_bean);
+				mBinding.buttonCoffeeBeanSubmit.setText(R.string.add);
 				mBinding.buttonCoffeeBeanSubmit.setOnClickListener(new AddCoffeeBean());
 			}
 		}

@@ -7,7 +7,6 @@ import androidx.room.PrimaryKey;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Entity(tableName = "coffee_beans")
 @Data

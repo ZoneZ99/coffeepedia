@@ -22,5 +22,10 @@
     <string name="success_edit_coffee_bean">Coffe bean edited</string>
     <string name="success_delete_coffee_bean">Coffee bean deleted</string>
     <string name="brew_methods">Brew Methods</string>
+    <string name="brew_method_input_name">Name</string>
+    <string name="brew_method_input_description">Description</string>
     <string name="add_brew_method">Add Brew Method</string>
+    <string name="edit_brew_method">Edit Brew Method</string>
+    <string name="success_add_brew_method">Brew method added</string>
+    <string name="success_edit_brew_method">Brew method edited</string>
 </resources>
