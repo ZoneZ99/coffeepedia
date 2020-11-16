@@ -7,23 +7,23 @@ import android.view.View;
 import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.CoffeePediaApplication;
+import androidx.lifecycle.ViewModelProvider;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.R;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.data.entity.CoffeeBean;
-import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.data.repository.CoffeeBeanRepository;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.databinding.ActivityCoffeeBeanEditorBinding;
+import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.ui.viewmodel.CoffeeBeanEditorViewModel;
 
 public class CoffeeBeanEditorActivity extends AppCompatActivity {
 
 	private ActivityCoffeeBeanEditorBinding mBinding;
 
-	private CoffeeBeanRepository mRepository;
+	private CoffeeBeanEditorViewModel mViewModel;
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		mRepository = ((CoffeePediaApplication) getApplication()).getCoffeeBeanRepository();
 		mBinding = ActivityCoffeeBeanEditorBinding.inflate(getLayoutInflater());
+		mViewModel = new ViewModelProvider(this).get(CoffeeBeanEditorViewModel.class);
 		View view = mBinding.getRoot();
 		setContentView(view);
 
@@ -32,17 +32,20 @@ public class CoffeeBeanEditorActivity extends AppCompatActivity {
 			if (bundle.getBoolean(CoffeeBeansActivity.EDIT)) {
 				CoffeeBean coffeeBean = bundle.getParcelable(CoffeeBeansActivity.COFFEE_BEAN);
 				if (coffeeBean != null) {
-					mBinding.inputCoffeeBeanName.setText(coffeeBean.getName());
-					mBinding.inputCoffeeBeanAltitude.setText(coffeeBean.getAltitude());
-					mBinding.inputCoffeeBeanAroma.setText(coffeeBean.getAroma());
-					mBinding.inputCoffeeBeanOrigin.setText(coffeeBean.getOrigin());
-					mBinding.inputCoffeeBeanType.setText(coffeeBean.getType());
-					mBinding.inputCoffeeBeanProcess.setText(coffeeBean.getProcess());
-					mBinding.inputCoffeeBeanTasteNote.setText(coffeeBean.getTasteNote());
+					mViewModel.setCoffeeBean(coffeeBean);
+					mViewModel.getCoffeeBean().observe(this, bean -> {
+						mBinding.inputCoffeeBeanName.setText(bean.getName());
+						mBinding.inputCoffeeBeanAltitude.setText(bean.getAltitude());
+						mBinding.inputCoffeeBeanAroma.setText(bean.getAroma());
+						mBinding.inputCoffeeBeanOrigin.setText(bean.getOrigin());
+						mBinding.inputCoffeeBeanType.setText(bean.getType());
+						mBinding.inputCoffeeBeanProcess.setText(bean.getProcess());
+						mBinding.inputCoffeeBeanTasteNote.setText(bean.getTasteNote());
+					});
 				}
 				mBinding.titleCoffeeBeanEditor.setText(getString(R.string.edit_bean));
 				mBinding.buttonCoffeeBeanSubmit.setText(getString(R.string.edit));
-				mBinding.buttonCoffeeBeanSubmit.setOnClickListener(new EditCoffeeBean(coffeeBean));
+				mBinding.buttonCoffeeBeanSubmit.setOnClickListener(new EditCoffeeBean());
 			} else {
 				mBinding.titleCoffeeBeanEditor.setText(getString(R.string.add_bean));
 				mBinding.buttonCoffeeBeanSubmit.setText(getString(R.string.add));
@@ -66,7 +69,7 @@ public class CoffeeBeanEditorActivity extends AppCompatActivity {
 					.origin(mBinding.inputCoffeeBeanOrigin.getText().toString())
 					.type(mBinding.inputCoffeeBeanType.getText().toString())
 					.build();
-				mRepository.insertCoffeeBean(coffeeBean);
+				mViewModel.insertCoffeeBean(coffeeBean);
 
 				Intent replyIntent = new Intent();
 				setResult(RESULT_OK, replyIntent);
@@ -79,23 +82,18 @@ public class CoffeeBeanEditorActivity extends AppCompatActivity {
 
 	private class EditCoffeeBean implements View.OnClickListener {
 
-		private CoffeeBean mCoffeeBean;
-
-		public EditCoffeeBean(CoffeeBean coffeeBean) {
-			mCoffeeBean = coffeeBean;
-		}
-
 		@Override
 		public void onClick(View v) {
 			if (isInputValid()) {
-				mCoffeeBean.setName(mBinding.inputCoffeeBeanName.getText().toString());
-				mCoffeeBean.setType(mBinding.inputCoffeeBeanType.getText().toString());
-				mCoffeeBean.setOrigin(mBinding.inputCoffeeBeanOrigin.getText().toString());
-				mCoffeeBean.setAltitude(mBinding.inputCoffeeBeanAltitude.getText().toString());
-				mCoffeeBean.setProcess(mBinding.inputCoffeeBeanProcess.getText().toString());
-				mCoffeeBean.setAroma(mBinding.inputCoffeeBeanAroma.getText().toString());
-				mCoffeeBean.setTasteNote(mBinding.inputCoffeeBeanTasteNote.getText().toString());
-				mRepository.updateCoffeeBean(mCoffeeBean);
+				CoffeeBean coffeeBean = mViewModel.getCoffeeBean().getValue();
+				coffeeBean.setName(mBinding.inputCoffeeBeanName.getText().toString());
+				coffeeBean.setType(mBinding.inputCoffeeBeanType.getText().toString());
+				coffeeBean.setOrigin(mBinding.inputCoffeeBeanOrigin.getText().toString());
+				coffeeBean.setAltitude(mBinding.inputCoffeeBeanAltitude.getText().toString());
+				coffeeBean.setProcess(mBinding.inputCoffeeBeanProcess.getText().toString());
+				coffeeBean.setAroma(mBinding.inputCoffeeBeanAroma.getText().toString());
+				coffeeBean.setTasteNote(mBinding.inputCoffeeBeanTasteNote.getText().toString());
+				mViewModel.updateCoffeeBean(coffeeBean);
 
 				Intent replyIntent = new Intent();
 				setResult(RESULT_OK, replyIntent);
