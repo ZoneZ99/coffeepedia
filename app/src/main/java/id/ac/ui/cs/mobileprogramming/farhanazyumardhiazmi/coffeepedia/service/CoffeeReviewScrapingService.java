@@ -116,10 +116,9 @@ public class CoffeeReviewScrapingService extends IntentService {
 		intent.putExtra(RESULT, RESULT_CANCELED);
 		sendBroadcast(intent);
 	}
-}
 
-interface ApiService {
-
-	@GET(".")
-	Call<String> getStringResponse();
+	private interface ApiService {
+		@GET(".")
+		Call<String> getStringResponse();
+	}
 }
