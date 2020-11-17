@@ -39,21 +39,4 @@ public class DataGenerator {
 		}
 		return brewMethods;
 	}
-
-	public static List<BrewRecipe> generateBrewRecipes() {
-		List<BrewRecipe> brewRecipes = new ArrayList<>(10);
-		for (int i = 0; i < 10; i++) {
-			BrewRecipe brewRecipe = BrewRecipe
-				.builder()
-				.brewSteps("A")
-				.brewTime("A")
-				.grindLevel("A")
-				.roastLevel("A")
-				.name(String.valueOf(i))
-				.waterTemperature("A")
-				.build();
-			brewRecipes.add(brewRecipe);
-		}
-		return brewRecipes;
-	}
 }

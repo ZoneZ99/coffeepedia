@@ -23,14 +23,14 @@
 
         <include
             layout="@layout/brew_method_item"
-            app:brewMethod="@{brewMethodViewModel.brewMethod}" />
+            app:brewMethod="@{brewMethodViewModel.brewMethodWithBrewRecipes.brewMethod}" />
 
         <Button
             android:id="@+id/button_add_brew_recipe"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/add_brew_recipe"
-            android:onClick="@{() -> callback.onClick(brewMethodViewModel.brewMethod)}"/>
+            android:onClick="@{() -> callback.onClick(brewMethodViewModel.brewMethodWithBrewRecipes.brewMethod)}"/>
 
         <Button
             android:id="@+id/button_edit_brew_method"
@@ -43,6 +43,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/delete" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/recipes">
+        </TextView>
+
+        <ListView
+            android:id="@+id/list_related_brew_recipes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </ListView>
 
     </LinearLayout>
 </layout>

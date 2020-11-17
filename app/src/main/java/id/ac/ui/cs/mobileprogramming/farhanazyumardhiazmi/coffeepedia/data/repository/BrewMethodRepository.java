@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.data.CoffeePediaDatabase;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.data.entity.BrewMethod;
+import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.data.entity.BrewRecipe;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.data.entity.relation.BrewMethodWithBrewRecipes;
 
 import java.util.List;
@@ -38,7 +39,7 @@ public class BrewMethodRepository {
 		return mDatabase.brewMethodDao().getBrewMethodById(brewMethodId);
 	}
 
-	public LiveData<List<BrewMethodWithBrewRecipes>> getBrewMethodWithBrewRecipesByBrewMethodId(final long brewMethodId) {
+	public LiveData<BrewMethodWithBrewRecipes> getBrewMethodWithBrewRecipesByBrewMethodId(final long brewMethodId) {
 		return mDatabase.brewMethodDao().getBrewMethodWithBrewRecipesByBrewMethodId(brewMethodId);
 	}
 

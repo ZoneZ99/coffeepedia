@@ -41,4 +41,5 @@
     <string name="success_add_brew_recipe">Brew Recipe Added</string>
     <string name="success_edit_brew_recipe">Brew Recipe edited</string>
     <string name="success_delete_brew_recipe">Brew recipe deleted</string>
+    <string name="recipes">Recipes for This Brew Method</string>
 </resources>
