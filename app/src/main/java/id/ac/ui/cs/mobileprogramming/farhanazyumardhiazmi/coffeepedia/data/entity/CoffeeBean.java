@@ -15,21 +15,21 @@ import lombok.Data;
 public class CoffeeBean implements Parcelable {
 
 	@PrimaryKey(autoGenerate = true)
-	public long coffeeBeanId;
+	private long coffeeBeanId;
 
-	public String name;
+	private String name;
 
-	public String type;
+	private String type;
 
-	public String origin;
+	private String origin;
 
-	public String altitude;
+	private String altitude;
 
-	public String process;
+	private String process;
 
-	public String aroma;
+	private String aroma;
 
-	public String tasteNote;
+	private String tasteNote;
 
 	public CoffeeBean() {
 

@@ -15,11 +15,11 @@ import lombok.Data;
 public class BrewMethod implements Parcelable {
 
 	@PrimaryKey(autoGenerate = true)
-	public long brewMethodId;
+	private long brewMethodId;
 
-	public String name;
+	private String name;
 
-	public String description;
+	private String description;
 
 	public BrewMethod() {
 

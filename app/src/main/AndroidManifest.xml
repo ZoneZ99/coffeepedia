@@ -37,6 +37,11 @@
 
         <service android:name=".service.CoffeeReviewScrapingService"></service>
 
+        <provider
+            android:authorities="id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.provider"
+            android:name=".provider.PdfProvider">
+        </provider>
+
     </application>
 
 </manifest>

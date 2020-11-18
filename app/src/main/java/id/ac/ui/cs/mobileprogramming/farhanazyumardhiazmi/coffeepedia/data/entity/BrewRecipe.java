@@ -27,21 +27,21 @@ import static androidx.room.ForeignKey.SET_NULL;
 public class BrewRecipe implements Parcelable {
 
     @PrimaryKey(autoGenerate = true)
-    public long brewRecipeId;
+    private long brewRecipeId;
 
-    public long relatedBrewMethodId;
+    private long relatedBrewMethodId;
 
-    public String name;
+    private String name;
 
-    public String roastLevel;
+    private String roastLevel;
 
-    public String grindLevel;
+    private String grindLevel;
 
-    public String waterTemperature;
+    private String waterTemperature;
 
-    public String brewTime;
+    private String brewTime;
 
-    public String brewSteps;
+    private String brewSteps;
 
     public BrewRecipe() {
     }

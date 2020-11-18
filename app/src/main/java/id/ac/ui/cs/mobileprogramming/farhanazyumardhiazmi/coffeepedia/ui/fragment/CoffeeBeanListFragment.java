@@ -1,8 +1,11 @@
 package id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.ui.fragment;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.graphics.pdf.PdfDocument;
 import android.os.Bundle;
+import android.os.Parcelable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +20,7 @@ import androidx.lifecycle.ViewModelProvider;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.R;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.data.entity.CoffeeBean;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.databinding.FragmentCoffeeBeanListBinding;
+import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.provider.PdfProvider;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.ui.activity.CoffeeBeansActivity;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.ui.adapter.CoffeeBeanAdapter;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.ui.callback.CoffeeBeanClickCallback;
@@ -24,11 +28,14 @@ import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.ui.viewmod
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CoffeeBeanListFragment extends Fragment {
 
 	public static final String TAG = "CoffeeBeanListFragment";
+
+	public static final int COFFEE_BEAN_LIST_EXPORT_PDF_REQUEST_CODE = 3;
 
 	private CoffeeBeanAdapter mCoffeeBeanAdapter;
 
@@ -50,13 +57,7 @@ public class CoffeeBeanListFragment extends Fragment {
 		mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_coffee_bean_list, container, false);
 		mCoffeeBeanAdapter = new CoffeeBeanAdapter(mCoffeeBeanClickCallback);
 		mBinding.coffeeBeanList.setAdapter(mCoffeeBeanAdapter);
-		mBinding.buttonExportCoffeeBeanList.setOnClickListener(v -> {
-			Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
-			intent.addCategory(Intent.CATEGORY_OPENABLE);
-			intent.setType("application/pdf");
-			intent.putExtra(Intent.EXTRA_TITLE, "test.pdf");
-			startActivityForResult(intent, 10);
-		});
+		mBinding.buttonExportCoffeeBeanList.setOnClickListener(mExportButtonClickCallback);
 		return mBinding.getRoot();
 	}
 
@@ -80,29 +81,33 @@ public class CoffeeBeanListFragment extends Fragment {
 		super.onDestroyView();
 	}
 
-	private final CoffeeBeanClickCallback mCoffeeBeanClickCallback = coffeeBean -> {
-		if (getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.STARTED)) {
-			((CoffeeBeansActivity) requireActivity()).showCoffeeBeanDetailFragment(coffeeBean);
-		}
+	private final View.OnClickListener mExportButtonClickCallback = view -> {
+		Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
+		intent.addCategory(Intent.CATEGORY_OPENABLE);
+		intent.setType("application/pdf");
+		intent.putExtra(Intent.EXTRA_TITLE, "coffee_bean_list.pdf");
+		intent.putExtra("coffee_bean_id", 0);
+		startActivityForResult(intent, COFFEE_BEAN_LIST_EXPORT_PDF_REQUEST_CODE);
 	};
 
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
-		PdfDocument document = new PdfDocument();
-		PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(100, 100, 1).create();
-		PdfDocument.Page page = document.startPage(pageInfo);
-		View content = getActivity().getCurrentFocus();
-		content.draw(page.getCanvas());
-		document.finishPage(page);
-		OutputStream outputStream;
-		try {
-			outputStream = getActivity().getContentResolver().openOutputStream(data.getData());
-			document.writeTo(outputStream);
-		} catch (IOException e) {
-			Toast.makeText(getContext(), e.toString(), Toast.LENGTH_LONG).show();
-		} finally {
-			document.close();
+		Log.d("CoffeePedia", "ACTIVITY");
+		if (data != null) {
+			Log.d("CoffeePedia", "RESULT");
+			ContentValues contentValues = new ContentValues();
+			long coffeeBeanId = data.getLongExtra("coffee_bean_id", 0);
+			contentValues.put(PdfProvider.CONTENT_TYPE, PdfProvider.COFFEE_BEAN);
+			contentValues.put(PdfProvider.CONTENT_ID, coffeeBeanId);
+			contentValues.put("title", data.getStringExtra(Intent.EXTRA_TITLE));
+			getActivity().getContentResolver().bulkInsert(PdfProvider.CONTENT_URI, new ContentValues[]{contentValues});
 		}
 	}
+
+	private final CoffeeBeanClickCallback mCoffeeBeanClickCallback = coffeeBean -> {
+		if (getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.STARTED)) {
+			((CoffeeBeansActivity) requireActivity()).showCoffeeBeanDetailFragment(coffeeBean);
+		}
+	};
 }

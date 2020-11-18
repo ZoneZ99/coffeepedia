@@ -1,8 +1,12 @@
 package id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.util;
 
+import java.util.List;
+
 public interface PdfExportable {
 
-	String getRepresentation();
+	List<List<String>> getRepresentation();
 
-	int getNumberOfColumn();
+	int getNumberOfColumns();
+
+	List<String> getColumnNames();
 }
