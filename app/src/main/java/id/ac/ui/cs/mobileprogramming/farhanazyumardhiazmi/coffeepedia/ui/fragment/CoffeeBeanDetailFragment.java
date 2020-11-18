@@ -44,8 +44,9 @@ public class CoffeeBeanDetailFragment extends Fragment {
 		mViewModel = new ViewModelProvider(this, factory).get(CoffeeBeanViewModel.class);
 		mBinding.setLifecycleOwner(getViewLifecycleOwner());
 		mBinding.setCoffeeBeanViewModel(mViewModel);
-		mBinding.buttonDeleteCoffeeBean.setOnClickListener(new DeleteButtonOnClickListener());
-		mBinding.buttonEditCoffeeBean.setOnClickListener(new EditButtonOnClickListener());
+		mBinding.buttonDeleteCoffeeBean.setOnClickListener(mDeleteButtonOnClickCallback);
+		mBinding.buttonEditCoffeeBean.setOnClickListener(mEditButtonOnClickCallback);
+		mBinding.buttonExportCoffeeBeanDetail.setOnClickListener(mExportButtonClickCallback);
 	}
 
 	@Override
@@ -62,23 +63,22 @@ public class CoffeeBeanDetailFragment extends Fragment {
 		return fragment;
 	}
 
-	private class DeleteButtonOnClickListener implements View.OnClickListener {
+	private final View.OnClickListener mDeleteButtonOnClickCallback = view -> {
+		CoffeeBean deletedCoffeeBean = mViewModel.getCoffeeBean().getValue();
+		mViewModel.deleteCoffeeBean(deletedCoffeeBean);
+		Toast.makeText(getContext(), R.string.success_delete_coffee_bean, Toast.LENGTH_SHORT).show();
+		getActivity().onBackPressed();
+	};
 
-		@Override
-		public void onClick(View v) {
-			CoffeeBean deletedCoffeeBean = mViewModel.getCoffeeBean().getValue();
-			mViewModel.deleteCoffeeBean(deletedCoffeeBean);
-			Toast.makeText(getContext(), R.string.success_delete_coffee_bean, Toast.LENGTH_SHORT).show();
-			getActivity().onBackPressed();
-		}
-	}
+	private final View.OnClickListener mEditButtonOnClickCallback = view -> {
+		CoffeeBean editedCoffeeBean = mViewModel.getCoffeeBean().getValue();
+		((CoffeeBeansActivity) getActivity()).startCoffeeBeanEditView(editedCoffeeBean);
+	};
 
-	private class EditButtonOnClickListener implements View.OnClickListener {
+	private final View.OnClickListener mExportButtonClickCallback = view -> {
+		mViewModel.getCoffeeBean().observe(this, bean -> {
+			((CoffeeBeansActivity) getActivity()).exportDataToPdf(bean.getCoffeeBeanId(), "coffee_bean_detail.pdf");
+		});
+	};
 
-		@Override
-		public void onClick(View v) {
-			CoffeeBean editedCoffeeBean = mViewModel.getCoffeeBean().getValue();
-			((CoffeeBeansActivity) getActivity()).startCoffeeBeanEditView(editedCoffeeBean);
-		}
-	}
 }

@@ -1,5 +1,6 @@
 package id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.ui.activity;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.R;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.data.entity.CoffeeBean;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.databinding.ActivityCoffeeBeansBinding;
+import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.provider.PdfProvider;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.ui.fragment.CoffeeBeanDetailFragment;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.ui.fragment.CoffeeBeanListFragment;
 
@@ -22,7 +24,11 @@ public class CoffeeBeansActivity extends AppCompatActivity {
 
 	public static final int EDIT_COFFEE_BEAN_ACTIVITY_REQUEST_CODE = 2;
 
+	private static final int EXPORT_COFFEE_BEAN_ACTIVITY_REQUEST_CODE = 3 ;
+
 	public static final String COFFEE_BEAN = "coffee_bean";
+
+	private long exportedCoffeeBeanId;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -76,6 +82,24 @@ public class CoffeeBeansActivity extends AppCompatActivity {
 			Toast.makeText(getApplicationContext(), R.string.success_add_coffee_bean, Toast.LENGTH_SHORT).show();
 		} else if (requestCode == EDIT_COFFEE_BEAN_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
 			Toast.makeText(getApplicationContext(), R.string.success_edit_coffee_bean, Toast.LENGTH_SHORT).show();
+		} else if (requestCode == EXPORT_COFFEE_BEAN_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
+			if (data != null) {
+				ContentValues contentValues = new ContentValues();
+				contentValues.put(PdfProvider.CONTENT_TYPE, PdfProvider.COFFEE_BEAN);
+				contentValues.put(PdfProvider.CONTENT_ID, exportedCoffeeBeanId);
+				contentValues.put(PdfProvider.URI_KEY, data.getDataString());
+				getContentResolver().insert(PdfProvider.CONTENT_URI, contentValues);
+				Toast.makeText(getApplicationContext(), R.string.success_export_pdf, Toast.LENGTH_SHORT).show();
+			}
 		}
+	}
+
+	public void exportDataToPdf(long coffeeBeanId, String filename) {
+		exportedCoffeeBeanId = coffeeBeanId;
+		Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
+		intent.addCategory(Intent.CATEGORY_OPENABLE);
+		intent.setType("application/pdf");
+		intent.putExtra(Intent.EXTRA_TITLE, filename);
+		startActivityForResult(intent, EXPORT_COFFEE_BEAN_ACTIVITY_REQUEST_CODE);
 	}
 }
