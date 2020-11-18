@@ -69,10 +69,7 @@ public class PdfProvider extends ContentProvider {
     @Nullable
     @Override
     public Uri insert(@NonNull Uri uri, @Nullable ContentValues values) {
-        String title = values.getAsString("title");
-        if (title == null) {
-            title = "generated_pdf";
-        }
+        Uri pdfUri = Uri.parse(values.getAsString("uri"));
         String contentType = values.getAsString(CONTENT_TYPE);
         long contentId = values.getAsLong(CONTENT_ID);
 
@@ -88,25 +85,7 @@ public class PdfProvider extends ContentProvider {
             pdfExportable = new CoffeeBeanPdfExportable(coffeeBeans);
         }
         try {
-            Log.d("CoffeePedia", uri.toString());
-            Uri pdfUri = ContentUris.withAppendedId(CONTENT_URI, contentId);
-            OutputStream out = null;
-            BufferedInputStream inputStream;
-            out = getContext().getContentResolver().openOutputStream(pdfUri, "w");
-            File file = new File(pdfUri.getPath());
-            inputStream = new BufferedInputStream(new FileInputStream(file));
-            int available = inputStream.available();
-            byte[] buffer;
-            while (available > 0) {
-                buffer = new byte[available];
-                int i = inputStream.read(buffer, 0, available);
-                out.write(buffer, 0, i);
-                available = inputStream.available();
-            }
-            out.flush();
-            pdfUtil.getDocument(title, pdfExportable, getContext().getContentResolver().openOutputStream(pdfUri));
-            out.close();
-            inputStream.close();
+            pdfUtil.getDocument(pdfExportable, getContext().getContentResolver().openOutputStream(pdfUri));
         } catch (IOException e) {
             e.printStackTrace();
         }

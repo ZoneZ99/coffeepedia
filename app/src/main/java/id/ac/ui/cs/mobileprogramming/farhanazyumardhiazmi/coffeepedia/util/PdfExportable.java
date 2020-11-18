@@ -4,9 +4,7 @@ import java.util.List;
 
 public interface PdfExportable {
 
-	List<List<String>> getRepresentation();
-
-	int getNumberOfColumns();
+	List<String> getRepresentation();
 
 	List<String> getColumnNames();
 }

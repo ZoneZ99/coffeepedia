@@ -6,21 +6,17 @@ import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Table;
 
-import java.io.FileNotFoundException;
 import java.io.OutputStream;
 
 public class PdfUtil {
 
-	public void getDocument(String title, PdfExportable pdfExportable, OutputStream outputStream) {
+	public void getDocument(PdfExportable pdfExportable, OutputStream outputStream) {
 		Document document = null;
 		try (PdfDocument pdfDocument = new PdfDocument(new PdfWriter(outputStream))) {
 			document = new Document(pdfDocument);
-			int numberOfColumns = pdfExportable.getNumberOfColumns();
-			Table table = new Table(numberOfColumns);
-
+			Table table = new Table(pdfExportable.getColumnNames().size());
 			pdfExportable.getColumnNames().forEach(table::addCell);
-			pdfExportable.getRepresentation().forEach(row -> row.forEach(table::addCell));
-
+			pdfExportable.getRepresentation().forEach(table::addCell);
 			document.add(table);
 			document.flush();
 			document.close();

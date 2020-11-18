@@ -14,31 +14,25 @@ public class CoffeeBeanPdfExportable implements PdfExportable {
     }
 
     @Override
-    public List<List<String>> getRepresentation() {
-        List<List<String>> representation = new ArrayList<>();
+    public List<String> getRepresentation() {
+        List<String> representation = new ArrayList<>();
         for (CoffeeBean coffeeBean : coffeeBeans) {
-            List<String> rowValues = new ArrayList<>();
-            for (int i = 0; i < getNumberOfColumns(); i++) {
-                rowValues.add(coffeeBean.getName());
-                rowValues.add(coffeeBean.getType());
-                rowValues.add(coffeeBean.getAltitude());
-                rowValues.add(coffeeBean.getProcess());
-                rowValues.add(coffeeBean.getAroma());
-                rowValues.add(coffeeBean.getTasteNote());
-            }
-            representation.add(rowValues);
+            representation.add(String.valueOf(coffeeBean.getCoffeeBeanId()));
+            representation.add(coffeeBean.getName());
+            representation.add(coffeeBean.getType());
+            representation.add(coffeeBean.getOrigin());
+            representation.add(coffeeBean.getAltitude());
+            representation.add(coffeeBean.getProcess());
+            representation.add(coffeeBean.getAroma());
+            representation.add(coffeeBean.getTasteNote());
         }
         return representation;
     }
 
     @Override
-    public int getNumberOfColumns() {
-        return CoffeeBean.class.getDeclaredFields().length;
-    }
-
-    @Override
     public List<String> getColumnNames() {
         List<String> columnNames = new ArrayList<>();
+        columnNames.add("Id");
         columnNames.add("Name");
         columnNames.add("Type");
         columnNames.add("Origin");

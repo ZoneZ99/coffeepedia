@@ -93,15 +93,13 @@ public class CoffeeBeanListFragment extends Fragment {
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
-		Log.d("CoffeePedia", "ACTIVITY");
 		if (data != null) {
-			Log.d("CoffeePedia", "RESULT");
 			ContentValues contentValues = new ContentValues();
 			long coffeeBeanId = data.getLongExtra("coffee_bean_id", 0);
 			contentValues.put(PdfProvider.CONTENT_TYPE, PdfProvider.COFFEE_BEAN);
 			contentValues.put(PdfProvider.CONTENT_ID, coffeeBeanId);
-			contentValues.put("title", data.getStringExtra(Intent.EXTRA_TITLE));
-			getActivity().getContentResolver().bulkInsert(PdfProvider.CONTENT_URI, new ContentValues[]{contentValues});
+			contentValues.put("uri", data.getDataString());
+			getActivity().getContentResolver().insert(PdfProvider.CONTENT_URI, contentValues);
 		}
 	}
 
