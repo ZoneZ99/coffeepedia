@@ -1,6 +1,7 @@
 package id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.ui.activity;
 
 import android.content.Intent;
+import android.graphics.pdf.PdfDocument;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -11,6 +12,9 @@ import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.data.entit
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.databinding.ActivityCoffeeBeansBinding;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.ui.fragment.CoffeeBeanDetailFragment;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.ui.fragment.CoffeeBeanListFragment;
+
+import java.io.IOException;
+import java.io.OutputStream;
 
 public class CoffeeBeansActivity extends AppCompatActivity {
 
@@ -76,6 +80,7 @@ public class CoffeeBeansActivity extends AppCompatActivity {
 			Toast.makeText(getApplicationContext(), R.string.success_add_coffee_bean, Toast.LENGTH_SHORT).show();
 		} else if (requestCode == EDIT_COFFEE_BEAN_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
 			Toast.makeText(getApplicationContext(), R.string.success_edit_coffee_bean, Toast.LENGTH_SHORT).show();
+		} else {
 		}
 	}
 }
