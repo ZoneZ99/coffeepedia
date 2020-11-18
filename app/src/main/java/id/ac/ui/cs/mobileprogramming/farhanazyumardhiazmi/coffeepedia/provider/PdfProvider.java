@@ -8,8 +8,13 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.CoffeePediaApplication;
+import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.data.entity.BrewMethod;
+import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.data.entity.BrewRecipe;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.data.entity.CoffeeBean;
+import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.data.repository.BrewMethodRepository;
+import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.data.repository.BrewRecipeRepository;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.data.repository.CoffeeBeanRepository;
+import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.util.BrewMethodPdfExportable;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.util.CoffeeBeanPdfExportable;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.util.PdfExportable;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.util.PdfUtil;
@@ -21,6 +26,10 @@ import java.util.stream.Collectors;
 public class PdfProvider extends ContentProvider {
 
     private CoffeeBeanRepository mCoffeeBeanRepository;
+
+    private BrewMethodRepository mBrewMethodRepository;
+
+    private BrewRecipeRepository mBrewRecipeRepository;
 
     public static final String URI =
             "content://id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.provider/pdf";
@@ -46,6 +55,8 @@ public class PdfProvider extends ContentProvider {
     @Override
     public boolean onCreate() {
         mCoffeeBeanRepository = ((CoffeePediaApplication) getContext()).getCoffeeBeanRepository();
+        mBrewMethodRepository = ((CoffeePediaApplication) getContext()).getBrewMethodRepository();
+        mBrewRecipeRepository = ((CoffeePediaApplication) getContext()).getBrewRecipeRepository();
         pdfUtil = new PdfUtil();
         return true;
     }
@@ -76,13 +87,28 @@ public class PdfProvider extends ContentProvider {
             if (contentId != 0) {
                 pdfExportable = new CoffeeBeanPdfExportable(
                         coffeeBeans.stream().filter(
-                                bean -> bean.getCoffeeBeanId() == contentId).collect(Collectors.toList()
-                        )
+                                bean -> bean.getCoffeeBeanId() == contentId
+                        ).collect(Collectors.toList())
                 );
             } else {
                 pdfExportable = new CoffeeBeanPdfExportable(coffeeBeans);
             }
+        } else if (contentType.equals(BREW_METHOD)) {
+            List<BrewMethod> brewMethods;
+            brewMethods = mBrewMethodRepository.getBrewMethods().getValue();
+            if (contentId != 0) {
+                pdfExportable = new BrewMethodPdfExportable(
+                        brewMethods.stream().filter(
+                                brewMethod -> brewMethod.getBrewMethodId() == contentId
+                        ).collect(Collectors.toList())
+                );
+            } else {
+                pdfExportable = new BrewMethodPdfExportable(brewMethods);
+            }
+        } else {
+            List<BrewRecipe> brewRecipes;
         }
+
         try {
             pdfUtil.getDocument(pdfExportable, getContext().getContentResolver().openOutputStream(pdfUri));
         } catch (IOException e) {

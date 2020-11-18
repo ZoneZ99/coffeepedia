@@ -2,7 +2,6 @@ package id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.ui.fragme
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,12 +12,10 @@ import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Lifecycle;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.R;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.data.entity.BrewMethod;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.data.entity.BrewRecipe;
-import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.data.entity.relation.BrewMethodWithBrewRecipes;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.databinding.FragmentBrewMethodDetailBinding;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.ui.activity.BrewMethodsActivity;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.ui.activity.BrewRecipeFormActivity;
@@ -57,8 +54,9 @@ public class BrewMethodDetailFragment extends Fragment {
         mViewModel = new ViewModelProvider(this, factory).get(BrewMethodViewModel.class);
         mBinding.setLifecycleOwner(getViewLifecycleOwner());
         mBinding.setBrewMethodViewModel(mViewModel);
-        mBinding.buttonDeleteBrewMethod.setOnClickListener(new DeleteButtonOnClickListener());
-        mBinding.buttonEditBrewMethod.setOnClickListener(new EditButtonOnClickListener());
+        mBinding.buttonDeleteBrewMethod.setOnClickListener(mDeleteButtonOnClickCallback);
+        mBinding.buttonEditBrewMethod.setOnClickListener(mEditButtonOnClickCallback);
+        mBinding.buttonExportBrewMethodDetail.setOnClickListener(mExportButtonClickCallback);
 
         mViewModel.getBrewMethodWithBrewRecipes().observe(
                 getViewLifecycleOwner(),
@@ -98,23 +96,29 @@ public class BrewMethodDetailFragment extends Fragment {
         }
     };
 
-    private class DeleteButtonOnClickListener implements View.OnClickListener {
-
-        @Override
-        public void onClick(View v) {
+    private final View.OnClickListener mDeleteButtonOnClickCallback = view -> {
+        if (getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.STARTED)) {
             BrewMethod deletedBrewMethod = mViewModel.getBrewMethodWithBrewRecipes().getValue().getBrewMethod();
             mViewModel.deleteBrewMethod(deletedBrewMethod);
             Toast.makeText(getContext(), R.string.success_delete_brew_method, Toast.LENGTH_SHORT).show();
             getActivity().onBackPressed();
         }
-    }
+    };
 
-    private class EditButtonOnClickListener implements View.OnClickListener {
-
-        @Override
-        public void onClick(View v) {
+    private final View.OnClickListener mEditButtonOnClickCallback = view -> {
+        if (getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.STARTED)) {
             BrewMethod editedBrewMethod = mViewModel.getBrewMethodWithBrewRecipes().getValue().getBrewMethod();
             ((BrewMethodsActivity) getActivity()).startBrewMethodEditView(editedBrewMethod);
         }
-    }
+    };
+
+    private final View.OnClickListener mExportButtonClickCallback = view -> {
+        if (getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.STARTED)) {
+            mViewModel.getBrewMethodWithBrewRecipes().observe(this, brewMethodWithBrewRecipes -> ((BrewMethodsActivity) getActivity())
+                    .exportDataToPdf(
+                            brewMethodWithBrewRecipes.getBrewMethod().getBrewMethodId(),
+                            "brew_method_detail.pdf"
+                    ));
+        }
+    };
 }

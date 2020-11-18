@@ -46,6 +46,7 @@ public class BrewMethodListFragment extends Fragment {
 		mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_brew_method_list, container, false);
 		mBrewMethodAdapter = new BrewMethodAdapter(mBrewMethodClickCallback);
 		mBinding.brewMethodList.setAdapter(mBrewMethodAdapter);
+		mBinding.buttonExportBrewMethodList.setOnClickListener(mExportButtonClickCallback);
 		return mBinding.getRoot();
 	}
 
@@ -72,6 +73,12 @@ public class BrewMethodListFragment extends Fragment {
 	private final BrewMethodClickCallback mBrewMethodClickCallback = brewMethod -> {
 		if (getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.STARTED)) {
 			((BrewMethodsActivity) requireActivity()).showBrewMethodDetailFragment(brewMethod);
+		}
+	};
+
+	private final View.OnClickListener mExportButtonClickCallback = view -> {
+		if (getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.STARTED)) {
+			((BrewMethodsActivity) getActivity()).exportDataToPdf(0, "brew_method_list.pdf");
 		}
 	};
 }

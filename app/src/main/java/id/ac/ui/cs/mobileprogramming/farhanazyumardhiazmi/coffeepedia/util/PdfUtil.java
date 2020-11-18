@@ -11,8 +11,7 @@ public class PdfUtil {
 
 	public void getDocument(PdfExportable pdfExportable, OutputStream outputStream) {
 		try (PdfDocument pdfDocument = new PdfDocument(new PdfWriter(outputStream))) {
-			Document document = null;
-			document = new Document(pdfDocument);
+			Document document = new Document(pdfDocument);
 			Table table = new Table(pdfExportable.getColumnNames().size());
 			pdfExportable.getColumnNames().forEach(table::addCell);
 			pdfExportable.getRepresentation().forEach(table::addCell);

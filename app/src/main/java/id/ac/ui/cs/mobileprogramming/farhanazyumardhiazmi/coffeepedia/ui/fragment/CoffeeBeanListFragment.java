@@ -76,7 +76,9 @@ public class CoffeeBeanListFragment extends Fragment {
 	};
 
 	private final View.OnClickListener mExportButtonClickCallback = view -> {
-		((CoffeeBeansActivity) getActivity()).exportDataToPdf(0, "coffee_bean_list.pdf");
+		if (getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.STARTED)) {
+			((CoffeeBeansActivity) getActivity()).exportDataToPdf(0, "coffee_bean_list.pdf");
+		}
 	};
 
 }

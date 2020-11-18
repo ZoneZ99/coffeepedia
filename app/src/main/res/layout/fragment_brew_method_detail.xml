@@ -44,6 +44,12 @@
             android:layout_height="wrap_content"
             android:text="@string/delete" />
 
+        <Button
+            android:id="@+id/button_export_brew_method_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/export_to_pdf" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

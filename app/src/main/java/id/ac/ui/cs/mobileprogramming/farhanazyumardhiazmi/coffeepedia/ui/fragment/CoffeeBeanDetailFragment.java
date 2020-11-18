@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.ViewModelProvider;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.R;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.data.entity.CoffeeBean;
@@ -64,21 +65,26 @@ public class CoffeeBeanDetailFragment extends Fragment {
 	}
 
 	private final View.OnClickListener mDeleteButtonOnClickCallback = view -> {
-		CoffeeBean deletedCoffeeBean = mViewModel.getCoffeeBean().getValue();
-		mViewModel.deleteCoffeeBean(deletedCoffeeBean);
-		Toast.makeText(getContext(), R.string.success_delete_coffee_bean, Toast.LENGTH_SHORT).show();
-		getActivity().onBackPressed();
+		if (getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.STARTED)) {
+			CoffeeBean deletedCoffeeBean = mViewModel.getCoffeeBean().getValue();
+			mViewModel.deleteCoffeeBean(deletedCoffeeBean);
+			Toast.makeText(getContext(), R.string.success_delete_coffee_bean, Toast.LENGTH_SHORT).show();
+			getActivity().onBackPressed();
+		}
 	};
 
 	private final View.OnClickListener mEditButtonOnClickCallback = view -> {
-		CoffeeBean editedCoffeeBean = mViewModel.getCoffeeBean().getValue();
-		((CoffeeBeansActivity) getActivity()).startCoffeeBeanEditView(editedCoffeeBean);
+		if (getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.STARTED)) {
+			CoffeeBean editedCoffeeBean = mViewModel.getCoffeeBean().getValue();
+			((CoffeeBeansActivity) getActivity()).startCoffeeBeanEditView(editedCoffeeBean);
+		}
 	};
 
 	private final View.OnClickListener mExportButtonClickCallback = view -> {
-		mViewModel.getCoffeeBean().observe(this, bean -> {
-			((CoffeeBeansActivity) getActivity()).exportDataToPdf(bean.getCoffeeBeanId(), "coffee_bean_detail.pdf");
-		});
+		if (getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.STARTED)) {
+			mViewModel.getCoffeeBean().observe(this, bean -> ((CoffeeBeansActivity) getActivity())
+					.exportDataToPdf(bean.getCoffeeBeanId(), "coffee_bean_detail.pdf"));
+		}
 	};
 
 }
