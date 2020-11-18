@@ -43,4 +43,6 @@
     <string name="success_delete_brew_recipe">Brew recipe deleted</string>
     <string name="recipes">Recipes for This Brew Method</string>
     <string name="success_export_pdf">Data exported to PDF</string>
+    <string name="coffee_reviews">Coffee Reviews</string>
+    <string name="failure_fetching_reviews">Fail to get reviews. Please check your internet connection and try again</string>
 </resources>
