@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.ViewModelProvider;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.R;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.data.entity.BrewRecipe;
@@ -44,8 +45,9 @@ public class BrewRecipeDetailFragment extends Fragment {
 		mViewModel = new ViewModelProvider(this, factory).get(BrewRecipeViewModel.class);
 		mBinding.setLifecycleOwner(getViewLifecycleOwner());
 		mBinding.setBrewRecipeViewModel(mViewModel);
-		mBinding.buttonEditBrewRecipe.setOnClickListener(new EditButtonOnClickListener());
-		mBinding.buttonDeleteBrewRecipe.setOnClickListener(new DeleteButtonOnClickListener());
+		mBinding.buttonEditBrewRecipe.setOnClickListener(mEditButtonOnClickCallback);
+		mBinding.buttonDeleteBrewRecipe.setOnClickListener(mDeleteButtonOnClickCallback);
+		mBinding.buttonExportBrewRecipeDetail.setOnClickListener(mExportButtonOnClickCallback);
 	}
 
 	@Override
@@ -62,23 +64,26 @@ public class BrewRecipeDetailFragment extends Fragment {
 		return fragment;
 	}
 
-	private class DeleteButtonOnClickListener implements View.OnClickListener {
-
-		@Override
-		public void onClick(View v) {
+	private final View.OnClickListener mDeleteButtonOnClickCallback = view -> {
+		if (getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.STARTED)) {
 			BrewRecipe deletedBrewRecipe = mViewModel.getBrewRecipe().getValue();
 			mViewModel.deleteBrewRecipe(deletedBrewRecipe);
 			Toast.makeText(getContext(), R.string.success_delete_brew_recipe, Toast.LENGTH_SHORT).show();
 			getActivity().onBackPressed();
 		}
-	}
+	};
 
-	private class EditButtonOnClickListener implements View.OnClickListener {
-
-		@Override
-		public void onClick(View v) {
+	private final View.OnClickListener mEditButtonOnClickCallback = view -> {
+		if (getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.STARTED)) {
 			BrewRecipe editedBrewRecipe = mViewModel.getBrewRecipe().getValue();
 			((BrewRecipesActivity) getActivity()).startBrewRecipeEditView(editedBrewRecipe);
 		}
-	}
+	};
+
+	private final View.OnClickListener mExportButtonOnClickCallback = view -> {
+		if (getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.STARTED)) {
+			mViewModel.getBrewRecipe().observe(this, recipe -> ((BrewRecipesActivity) getActivity())
+					.exportDataToPdf(recipe.getBrewRecipeId(), "brew_recipe_detail.pdf"));
+		}
+	};
 }

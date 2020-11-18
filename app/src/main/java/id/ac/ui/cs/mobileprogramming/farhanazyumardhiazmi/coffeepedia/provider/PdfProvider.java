@@ -14,10 +14,7 @@ import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.data.entit
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.data.repository.BrewMethodRepository;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.data.repository.BrewRecipeRepository;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.data.repository.CoffeeBeanRepository;
-import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.util.BrewMethodPdfExportable;
-import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.util.CoffeeBeanPdfExportable;
-import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.util.PdfExportable;
-import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.util.PdfUtil;
+import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.util.*;
 
 import java.io.IOException;
 import java.util.List;
@@ -80,7 +77,18 @@ public class PdfProvider extends ContentProvider {
         String contentType = values.getAsString(CONTENT_TYPE);
         long contentId = values.getAsLong(CONTENT_ID);
 
-        PdfExportable pdfExportable = null;
+        PdfExportable pdfExportable = getPdfExportable(contentType, contentId);
+
+        try {
+            pdfUtil.getDocument(pdfExportable, getContext().getContentResolver().openOutputStream(pdfUri));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return ContentUris.withAppendedId(CONTENT_URI, contentId);
+    }
+
+    private PdfExportable getPdfExportable(String contentType, long contentId) {
+        PdfExportable pdfExportable;
         if (contentType.equals(COFFEE_BEAN)) {
             List<CoffeeBean> coffeeBeans;
             coffeeBeans = mCoffeeBeanRepository.getCoffeeBeans().getValue();
@@ -107,14 +115,18 @@ public class PdfProvider extends ContentProvider {
             }
         } else {
             List<BrewRecipe> brewRecipes;
+            brewRecipes = mBrewRecipeRepository.getBrewRecipes().getValue();
+            if (contentId != 0) {
+                pdfExportable = new BrewRecipePdfExportable(
+                        brewRecipes.stream().filter(
+                                brewRecipe -> brewRecipe.getBrewRecipeId() == contentId
+                        ).collect(Collectors.toList())
+                );
+            } else {
+                pdfExportable = new BrewRecipePdfExportable(brewRecipes);
+            }
         }
-
-        try {
-            pdfUtil.getDocument(pdfExportable, getContext().getContentResolver().openOutputStream(pdfUri));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return ContentUris.withAppendedId(CONTENT_URI, contentId);
+        return pdfExportable;
     }
 
     @Override

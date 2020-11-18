@@ -26,18 +26,11 @@
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
             </androidx.recyclerview.widget.RecyclerView>
 
-<!--            <Button-->
-<!--                android:id="@+id/button_add_brew_recipe"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="@string/add_bean"-->
-<!--                android:onClick="startCoffeeBeanAddView"/>-->
-
-<!--            <Button-->
-<!--                android:id="@+id/button_export_coffee_bean_list"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="@string/export_to_pdf" />-->
+            <Button
+                android:id="@+id/button_export_brew_recipe_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/export_to_pdf" />
 
         </LinearLayout>
 

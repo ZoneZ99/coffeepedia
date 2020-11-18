@@ -46,6 +46,7 @@ public class BrewRecipeListFragment extends Fragment {
 		mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_brew_recipe_list, container, false);
 		mBrewRecipeAdapter = new BrewRecipeAdapter(mBrewRecipeClickCallback);
 		mBinding.brewRecipeList.setAdapter(mBrewRecipeAdapter);
+		mBinding.buttonExportBrewRecipeList.setOnClickListener(mExportButtonClickCallback);
 		return mBinding.getRoot();
 	}
 
@@ -72,6 +73,12 @@ public class BrewRecipeListFragment extends Fragment {
 	private final BrewRecipeClickCallback mBrewRecipeClickCallback = brewRecipe -> {
 		if (getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.STARTED)) {
 			((BrewRecipesActivity) requireActivity()).showBrewRecipeDetailFragment(brewRecipe);
+		}
+	};
+
+	private final View.OnClickListener mExportButtonClickCallback = view -> {
+		if (getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.STARTED)) {
+			((BrewRecipesActivity) getActivity()).exportDataToPdf(0, "brew_recipe_list.pdf");
 		}
 	};
 }

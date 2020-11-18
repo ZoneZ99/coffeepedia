@@ -10,7 +10,6 @@ import lombok.Builder;
 import lombok.Data;
 
 import static androidx.room.ForeignKey.CASCADE;
-import static androidx.room.ForeignKey.SET_NULL;
 
 @Entity(
     tableName = "brew_recipes",

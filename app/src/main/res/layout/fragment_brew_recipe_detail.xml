@@ -33,5 +33,11 @@
             android:layout_height="wrap_content"
             android:text="@string/delete" />
 
+        <Button
+            android:id="@+id/button_export_brew_recipe_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/export_to_pdf" />
+
     </LinearLayout>
 </layout>
