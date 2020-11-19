@@ -13,12 +13,14 @@
 
         <TextView
             android:id="@+id/title_brew_recipe_form"
+            style="@style/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="center" />
 
         <TextView
             android:labelFor="@id/input_brew_recipe_name"
+            style="@style/itemText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/brew_recipe_input_name" />
@@ -32,6 +34,7 @@
 
         <TextView
             android:labelFor="@id/input_brew_recipe_roast_level"
+            style="@style/itemText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/brew_recipe_input_roast_level" />
@@ -45,6 +48,7 @@
 
         <TextView
             android:labelFor="@id/input_brew_recipe_grind_level"
+            style="@style/itemText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/brew_recipe_input_grind_level" />
@@ -58,6 +62,7 @@
 
         <TextView
             android:labelFor="@id/input_brew_recipe_water_temperature"
+            style="@style/itemText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/brew_recipe_input_water_temperature" />
@@ -71,6 +76,7 @@
 
         <TextView
             android:labelFor="@id/input_brew_recipe_brew_time"
+            style="@style/itemText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/brew_recipe_input_brew_time" />
@@ -84,6 +90,7 @@
 
         <TextView
             android:labelFor="@id/input_brew_recipe_brew_steps"
+            style="@style/itemText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/brew_recipe_input_brew_steps" />
@@ -97,7 +104,7 @@
 
         <Button
             android:id="@+id/button_brew_recipe_submit"
-            android:layout_width="match_parent"
+            style="@style/button"
             android:layout_height="wrap_content" />
 
     </LinearLayout>

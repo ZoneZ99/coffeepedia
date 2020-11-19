@@ -13,12 +13,14 @@
 
         <TextView
             android:id="@+id/title_brew_method_form"
+            style="@style/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="center" />
 
         <TextView
             android:labelFor="@id/input_brew_method_name"
+            style="@style/itemText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/brew_method_input_name" />
@@ -32,6 +34,7 @@
 
         <TextView
             android:labelFor="@id/input_brew_method_description"
+            style="@style/itemText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/brew_method_input_description" />
@@ -45,10 +48,9 @@
 
         <Button
             android:id="@+id/button_brew_method_submit"
-            android:layout_width="match_parent"
+            style="@style/button"
             android:layout_height="wrap_content" />
 
     </LinearLayout>
-
 
 </ScrollView>

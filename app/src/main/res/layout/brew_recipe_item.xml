@@ -29,39 +29,45 @@
 
             <TextView
                 android:id="@+id/name"
+                style="@style/itemText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{brewRecipe.name}" />
+                android:text="@{@string/brew_recipe_input_name.concat(`: `).concat(String.valueOf(brewRecipe.name))}" />
 
             <TextView
                 android:id="@+id/roast_level"
+                style="@style/itemText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{brewRecipe.roastLevel}" />
+                android:text="@{@string/brew_recipe_input_roast_level.concat(`: `).concat(String.valueOf(brewRecipe.roastLevel))}" />
 
             <TextView
                 android:id="@+id/grind_level"
+                style="@style/itemText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{brewRecipe.grindLevel}" />
+                android:text="@{@string/brew_recipe_input_grind_level.concat(`: `).concat(String.valueOf(brewRecipe.grindLevel))}" />
 
             <TextView
                 android:id="@+id/water_temperature"
+                style="@style/itemText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{brewRecipe.waterTemperature}" />
+                android:text="@{@string/brew_recipe_input_water_temperature.concat(`: `).concat(String.valueOf(brewRecipe.waterTemperature))}" />
 
             <TextView
                 android:id="@+id/brew_time"
+                style="@style/itemText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{brewRecipe.brewTime}" />
+                android:text="@{@string/brew_recipe_input_brew_time.concat(`: `).concat(String.valueOf(brewRecipe.brewTime))}" />
 
             <TextView
                 android:id="@+id/brew_steps"
+                style="@style/itemText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{brewRecipe.brewSteps}" />
+                android:text="@{@string/brew_recipe_input_brew_steps.concat(`: `).concat(String.valueOf(brewRecipe.brewSteps))}" />
 
         </LinearLayout>
 
