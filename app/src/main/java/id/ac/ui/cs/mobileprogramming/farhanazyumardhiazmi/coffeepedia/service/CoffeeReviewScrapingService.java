@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Parcelable;
 import androidx.annotation.Nullable;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.BuildConfig;
-import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.R;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.service.util.CoffeeReview;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -111,7 +110,6 @@ public class CoffeeReviewScrapingService extends IntentService {
 
 	private void publishFailure() {
 		Intent intent = new Intent(BuildConfig.APPLICATION_ID + ".COFFEE_REVIEW_BROADCAST");
-		intent.putExtra(SCRAPING_CONTENT, R.string.failure_fetching_reviews);
 		intent.putExtra(RESULT, RESULT_CANCELED);
 		sendBroadcast(intent);
 	}

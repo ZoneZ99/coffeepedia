@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.BuildConfig;
+import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.R;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.databinding.ActivityCoffeeReviewsBinding;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.service.CoffeeReviewScrapingService;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.service.util.CoffeeReview;
@@ -33,8 +34,7 @@ public class CoffeeReviewsActivity extends AppCompatActivity {
 					);
 					populateReviewList(reviews);
 				} else if (resultCode == RESULT_CANCELED) {
-					String failureMessage = bundle.getString(CoffeeReviewScrapingService.SCRAPING_CONTENT);
-					Toast.makeText(getApplicationContext(), failureMessage, Toast.LENGTH_LONG).show();
+					Toast.makeText(getApplicationContext(), R.string.failure_fetching_reviews, Toast.LENGTH_LONG).show();
 				}
 			}
 		}
