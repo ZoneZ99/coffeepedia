@@ -29,45 +29,52 @@
 
             <TextView
                 android:id="@+id/name"
+                style="@style/itemText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{coffeeBean.name}" />
+                android:text="@{@string/coffee_bean_input_name.concat(`: `).concat(String.valueOf(coffeeBean.name))}" />
 
             <TextView
                 android:id="@+id/type"
+                style="@style/itemText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{coffeeBean.type}" />
+                android:text="@{@string/coffee_bean_input_type.concat(`: `).concat(String.valueOf(coffeeBean.type))}" />
 
             <TextView
                 android:id="@+id/origin"
+                style="@style/itemText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{coffeeBean.origin}" />
+                android:text="@{@string/coffee_bean_input_origin.concat(`: `).concat(String.valueOf(coffeeBean.origin))}" />
 
             <TextView
                 android:id="@+id/altitude"
+                style="@style/itemText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{coffeeBean.altitude}" />
+                android:text="@{@string/coffee_bean_input_altitude.concat(`: `).concat(String.valueOf(coffeeBean.altitude))}" />
 
             <TextView
                 android:id="@+id/process"
+                style="@style/itemText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{coffeeBean.process}" />
+                android:text="@{@string/coffee_bean_input_process.concat(`: `).concat(String.valueOf(coffeeBean.process))}" />
 
             <TextView
                 android:id="@+id/aroma"
+                style="@style/itemText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{coffeeBean.aroma}" />
+                android:text="@{@string/coffee_bean_input_aroma.concat(`: `).concat(String.valueOf(coffeeBean.aroma))}" />
 
             <TextView
                 android:id="@+id/taste_note"
+                style="@style/itemText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{coffeeBean.tasteNote}" />
+                android:text="@{@string/coffee_bean_input_taste_note.concat(`: `).concat(String.valueOf(coffeeBean.tasteNote))}" />
 
         </LinearLayout>
 

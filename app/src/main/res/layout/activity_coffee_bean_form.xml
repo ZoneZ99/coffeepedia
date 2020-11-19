@@ -13,11 +13,13 @@
 
         <TextView
             android:id="@+id/title_coffee_bean_form"
+            style="@style/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="center" />
 
         <TextView
+            style="@style/itemText"
             android:labelFor="@id/input_coffee_bean_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -31,6 +33,7 @@
             android:autofillHints="Input Coffee Bean Name" />
 
         <TextView
+            style="@style/itemText"
             android:labelFor="@id/input_coffee_bean_type"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -44,6 +47,7 @@
             android:autofillHints="Input Coffee Bean Type" />
 
         <TextView
+            style="@style/itemText"
             android:labelFor="@id/input_coffee_bean_origin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -57,6 +61,7 @@
             android:autofillHints="Input Coffee Bean Origin" />
 
         <TextView
+            style="@style/itemText"
             android:labelFor="@id/input_coffee_bean_altitude"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -70,6 +75,7 @@
             android:autofillHints="Input Coffee Bean Altitude" />
 
         <TextView
+            style="@style/itemText"
             android:labelFor="@id/input_coffee_bean_process"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -83,6 +89,7 @@
             android:autofillHints="Input Coffee Bean Process" />
 
         <TextView
+            style="@style/itemText"
             android:labelFor="@id/input_coffee_bean_aroma"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -96,6 +103,7 @@
             android:autofillHints="Input Coffee Bean Aroma" />
 
         <TextView
+            style="@style/itemText"
             android:labelFor="@id/input_coffee_bean_taste_note"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -110,7 +118,7 @@
 
         <Button
             android:id="@+id/button_coffee_bean_submit"
-            android:layout_width="match_parent"
+            style="@style/button"
             android:layout_height="wrap_content" />
 
     </LinearLayout>

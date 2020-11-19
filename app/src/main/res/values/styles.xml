@@ -7,4 +7,20 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="itemText" parent="TextAppearance.AppCompat">
+        <item name="fontFamily">@font/roboto_black</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="button" parent="TextAppearance.AppCompat">
+        <item name="android:layout_width">255dp</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+    <style name="title" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/roboto_black</item>
+        <item name="android:textColor">@color/color_coffee</item>
+        <item name="android:textSize">30sp</item>
+    </style>
+
 </resources>
