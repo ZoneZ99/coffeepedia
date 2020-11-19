@@ -24,7 +24,7 @@ public class CoffeeBeansActivity extends AppCompatActivity {
 
 	public static final int EDIT_COFFEE_BEAN_ACTIVITY_REQUEST_CODE = 2;
 
-	private static final int EXPORT_COFFEE_BEAN_ACTIVITY_REQUEST_CODE = 3 ;
+	private static final int EXPORT_COFFEE_BEAN_ACTIVITY_REQUEST_CODE = 3;
 
 	public static final String COFFEE_BEAN = "coffee_bean";
 

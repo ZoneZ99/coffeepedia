@@ -26,7 +26,9 @@ public class BrewRecipeViewModel extends AndroidViewModel {
 		mObservableBrewRecipe = brewRecipeRepository.getBrewRecipeById(brewRecipeId);
 	}
 
-	public LiveData<BrewRecipe> getBrewRecipe() { return mObservableBrewRecipe; }
+	public LiveData<BrewRecipe> getBrewRecipe() {
+		return mObservableBrewRecipe;
+	}
 
 	public void deleteBrewRecipe(BrewRecipe brewRecipe) {
 		mBrewRecipeRepository.deleteBrewRecipe(brewRecipe);

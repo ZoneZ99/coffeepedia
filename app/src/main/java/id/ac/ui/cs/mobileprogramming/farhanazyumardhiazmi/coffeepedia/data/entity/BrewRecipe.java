@@ -12,76 +12,76 @@ import lombok.Data;
 import static androidx.room.ForeignKey.CASCADE;
 
 @Entity(
-    tableName = "brew_recipes",
-    foreignKeys = @ForeignKey(
-            entity = BrewMethod.class,
-            parentColumns = "brewMethodId",
-            childColumns = "relatedBrewMethodId",
-            onDelete = CASCADE
-    )
+	tableName = "brew_recipes",
+	foreignKeys = @ForeignKey(
+		entity = BrewMethod.class,
+		parentColumns = "brewMethodId",
+		childColumns = "relatedBrewMethodId",
+		onDelete = CASCADE
+	)
 )
 @Data
 @AllArgsConstructor
 @Builder
 public class BrewRecipe implements Parcelable {
 
-    @PrimaryKey(autoGenerate = true)
-    private long brewRecipeId;
+	@PrimaryKey(autoGenerate = true)
+	private long brewRecipeId;
 
-    private long relatedBrewMethodId;
+	private long relatedBrewMethodId;
 
-    private String name;
+	private String name;
 
-    private String roastLevel;
+	private String roastLevel;
 
-    private String grindLevel;
+	private String grindLevel;
 
-    private String waterTemperature;
+	private String waterTemperature;
 
-    private String brewTime;
+	private String brewTime;
 
-    private String brewSteps;
+	private String brewSteps;
 
-    public BrewRecipe() {
-    }
+	public BrewRecipe() {
+	}
 
-    protected BrewRecipe(Parcel in) {
-        brewRecipeId = in.readLong();
-        relatedBrewMethodId = in.readLong();
-        name = in.readString();
-        roastLevel = in.readString();
-        grindLevel = in.readString();
-        waterTemperature = in.readString();
-        brewTime = in.readString();
-        brewSteps = in.readString();
-    }
+	protected BrewRecipe(Parcel in) {
+		brewRecipeId = in.readLong();
+		relatedBrewMethodId = in.readLong();
+		name = in.readString();
+		roastLevel = in.readString();
+		grindLevel = in.readString();
+		waterTemperature = in.readString();
+		brewTime = in.readString();
+		brewSteps = in.readString();
+	}
 
-    public static final Creator<BrewRecipe> CREATOR = new Creator<BrewRecipe>() {
-        @Override
-        public BrewRecipe createFromParcel(Parcel in) {
-            return new BrewRecipe(in);
-        }
+	public static final Creator<BrewRecipe> CREATOR = new Creator<BrewRecipe>() {
+		@Override
+		public BrewRecipe createFromParcel(Parcel in) {
+			return new BrewRecipe(in);
+		}
 
-        @Override
-        public BrewRecipe[] newArray(int size) {
-            return new BrewRecipe[size];
-        }
-    };
+		@Override
+		public BrewRecipe[] newArray(int size) {
+			return new BrewRecipe[size];
+		}
+	};
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
+	@Override
+	public int describeContents() {
+		return 0;
+	}
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeLong(brewRecipeId);
-        dest.writeLong(relatedBrewMethodId);
-        dest.writeString(name);
-        dest.writeString(roastLevel);
-        dest.writeString(grindLevel);
-        dest.writeString(waterTemperature);
-        dest.writeString(brewTime);
-        dest.writeString(brewSteps);
-    }
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeLong(brewRecipeId);
+		dest.writeLong(relatedBrewMethodId);
+		dest.writeString(name);
+		dest.writeString(roastLevel);
+		dest.writeString(grindLevel);
+		dest.writeString(waterTemperature);
+		dest.writeString(brewTime);
+		dest.writeString(brewSteps);
+	}
 }

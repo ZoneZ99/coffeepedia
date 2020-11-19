@@ -83,7 +83,7 @@ public class CoffeeBeanDetailFragment extends Fragment {
 	private final View.OnClickListener mExportButtonClickCallback = view -> {
 		if (getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.STARTED)) {
 			mViewModel.getCoffeeBean().observe(this, bean -> ((CoffeeBeansActivity) getActivity())
-					.exportDataToPdf(bean.getCoffeeBeanId(), "coffee_bean_detail.pdf"));
+				.exportDataToPdf(bean.getCoffeeBeanId(), "coffee_bean_detail.pdf"));
 		}
 	};
 

@@ -21,7 +21,9 @@ public class BrewMethodFormViewModel extends AndroidViewModel {
 		mBrewMethodRepository = ((CoffeePediaApplication) application).getBrewMethodRepository();
 	}
 
-	public LiveData<BrewMethod> getBrewMethod() { return mObservableBrewMethod; }
+	public LiveData<BrewMethod> getBrewMethod() {
+		return mObservableBrewMethod;
+	}
 
 	public void setBrewMethod(BrewMethod brewMethod) {
 		mObservableBrewMethod.setValue(brewMethod);

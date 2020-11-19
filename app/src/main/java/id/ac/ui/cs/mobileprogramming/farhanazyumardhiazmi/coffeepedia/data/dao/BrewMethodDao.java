@@ -11,7 +11,7 @@ import java.util.List;
 public interface BrewMethodDao {
 
 	@Insert(onConflict = OnConflictStrategy.REPLACE)
-	long insertBrewMethod(BrewMethod brewMethod);
+	void insertBrewMethod(BrewMethod brewMethod);
 
 	@Update(onConflict = OnConflictStrategy.REPLACE)
 	void updateBrewMethod(BrewMethod brewMethod);

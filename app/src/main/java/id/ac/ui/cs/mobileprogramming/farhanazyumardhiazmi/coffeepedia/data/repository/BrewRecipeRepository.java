@@ -56,7 +56,9 @@ public class BrewRecipeRepository {
 	private static class LoadAllAsync extends AsyncTask<Void, Void, LiveData<List<BrewRecipe>>> {
 		private final BrewRecipeRepository brewRecipeRepositoryAsync;
 
-		LoadAllAsync(BrewRecipeRepository brewRecipeRepository) { brewRecipeRepositoryAsync = brewRecipeRepository; }
+		LoadAllAsync(BrewRecipeRepository brewRecipeRepository) {
+			brewRecipeRepositoryAsync = brewRecipeRepository;
+		}
 
 		@Override
 		protected LiveData<List<BrewRecipe>> doInBackground(Void... voids) {
@@ -81,7 +83,9 @@ public class BrewRecipeRepository {
 
 		private final BrewRecipeRepository brewRecipeRepositoryAsync;
 
-		InsertAsync(BrewRecipeRepository brewRecipeRepository) { brewRecipeRepositoryAsync = brewRecipeRepository; }
+		InsertAsync(BrewRecipeRepository brewRecipeRepository) {
+			brewRecipeRepositoryAsync = brewRecipeRepository;
+		}
 
 		@Override
 		protected Void doInBackground(BrewRecipe... brewRecipes) {
@@ -94,7 +98,9 @@ public class BrewRecipeRepository {
 
 		private final BrewRecipeRepository brewRecipeRepositoryAsync;
 
-		UpdateAsync(BrewRecipeRepository brewRecipeRepository) { brewRecipeRepositoryAsync = brewRecipeRepository; }
+		UpdateAsync(BrewRecipeRepository brewRecipeRepository) {
+			brewRecipeRepositoryAsync = brewRecipeRepository;
+		}
 
 		@Override
 		protected Void doInBackground(BrewRecipe... brewRecipes) {
@@ -107,7 +113,9 @@ public class BrewRecipeRepository {
 
 		private final BrewRecipeRepository brewRecipeRepositoryAsync;
 
-		DeleteAsync(BrewRecipeRepository brewRecipeRepository) { brewRecipeRepositoryAsync = brewRecipeRepository; }
+		DeleteAsync(BrewRecipeRepository brewRecipeRepository) {
+			brewRecipeRepositoryAsync = brewRecipeRepository;
+		}
 
 		@Override
 		protected Void doInBackground(BrewRecipe... brewRecipes) {

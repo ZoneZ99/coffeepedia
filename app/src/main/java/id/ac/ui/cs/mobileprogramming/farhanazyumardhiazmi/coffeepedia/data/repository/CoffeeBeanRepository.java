@@ -83,7 +83,9 @@ public class CoffeeBeanRepository {
 
 		private final CoffeeBeanRepository coffeeBeanRepositoryAsync;
 
-		InsertAsync(CoffeeBeanRepository coffeeBeanRepository) { coffeeBeanRepositoryAsync = coffeeBeanRepository; }
+		InsertAsync(CoffeeBeanRepository coffeeBeanRepository) {
+			coffeeBeanRepositoryAsync = coffeeBeanRepository;
+		}
 
 		@Override
 		protected Void doInBackground(CoffeeBean... coffeeBeans) {
@@ -96,7 +98,9 @@ public class CoffeeBeanRepository {
 
 		private final CoffeeBeanRepository coffeeBeanRepositoryAsync;
 
-		UpdateAsync(CoffeeBeanRepository coffeeBeanRepository) { coffeeBeanRepositoryAsync = coffeeBeanRepository; }
+		UpdateAsync(CoffeeBeanRepository coffeeBeanRepository) {
+			coffeeBeanRepositoryAsync = coffeeBeanRepository;
+		}
 
 		@Override
 		protected Void doInBackground(CoffeeBean... coffeeBeans) {
@@ -109,7 +113,9 @@ public class CoffeeBeanRepository {
 
 		private final CoffeeBeanRepository coffeeBeanRepositoryAsync;
 
-		DeleteAsync(CoffeeBeanRepository coffeeBeanRepository) { coffeeBeanRepositoryAsync = coffeeBeanRepository; }
+		DeleteAsync(CoffeeBeanRepository coffeeBeanRepository) {
+			coffeeBeanRepositoryAsync = coffeeBeanRepository;
+		}
 
 		@Override
 		protected Void doInBackground(CoffeeBean... coffeeBeans) {

@@ -83,7 +83,7 @@ public class BrewRecipeDetailFragment extends Fragment {
 	private final View.OnClickListener mExportButtonOnClickCallback = view -> {
 		if (getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.STARTED)) {
 			mViewModel.getBrewRecipe().observe(this, recipe -> ((BrewRecipesActivity) getActivity())
-					.exportDataToPdf(recipe.getBrewRecipeId(), "brew_recipe_detail.pdf"));
+				.exportDataToPdf(recipe.getBrewRecipeId(), "brew_recipe_detail.pdf"));
 		}
 	};
 }

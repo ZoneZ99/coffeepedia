@@ -18,12 +18,6 @@ public class BrewRecipesActivity extends AppCompatActivity {
 
 	private ActivityBrewRecipesBinding mBinding;
 
-	public static final String IS_EDIT = "is_edit";
-
-	public static final int ADD_BREW_RECIPE_ACTIVITY_REQUEST_CODE = 1;
-
-	public static final int EDIT_BREW_RECIPE_ACTIVITY_REQUEST_CODE = 2;
-
 	private static final int EXPORT_BREW_RECIPE_ACTIVITY_REQUEST_CODE = 3;
 
 	public static final String BREW_RECIPE = "brew_recipe";
@@ -68,14 +62,14 @@ public class BrewRecipesActivity extends AppCompatActivity {
 		startActivity(intent);
 	}
 
-    public void exportDataToPdf(long brewRecipeId, String filename) {
+	public void exportDataToPdf(long brewRecipeId, String filename) {
 		exportedBrewRecipeId = brewRecipeId;
 		Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
 		intent.addCategory(Intent.CATEGORY_OPENABLE);
 		intent.setType("application/pdf");
 		intent.putExtra(Intent.EXTRA_TITLE, filename);
 		startActivityForResult(intent, EXPORT_BREW_RECIPE_ACTIVITY_REQUEST_CODE);
-    }
+	}
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {

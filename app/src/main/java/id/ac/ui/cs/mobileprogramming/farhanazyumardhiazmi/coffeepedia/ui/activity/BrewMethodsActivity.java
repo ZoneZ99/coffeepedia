@@ -92,12 +92,12 @@ public class BrewMethodsActivity extends AppCompatActivity {
 		}
 	}
 
-    public void exportDataToPdf(long brewMethodId, String filename) {
+	public void exportDataToPdf(long brewMethodId, String filename) {
 		exportedBrewMethodId = brewMethodId;
 		Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
 		intent.addCategory(Intent.CATEGORY_OPENABLE);
 		intent.setType("application/pdf");
 		intent.putExtra(Intent.EXTRA_TITLE, filename);
 		startActivityForResult(intent, EXPORT_BREW_METHOD_ACTIVITY_REQUEST_CODE);
-    }
+	}
 }

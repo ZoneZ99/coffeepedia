@@ -92,5 +92,5 @@ public class BrewMethodFormActivity extends AppCompatActivity {
 	private boolean isInputValid() {
 		return !TextUtils.isEmpty(mBinding.inputBrewMethodName.getText())
 			&& !TextUtils.isEmpty(mBinding.inputBrewMethodDescription.getText());
- 	}
+	}
 }

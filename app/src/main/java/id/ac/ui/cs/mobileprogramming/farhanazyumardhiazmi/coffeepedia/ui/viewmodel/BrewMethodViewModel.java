@@ -2,14 +2,14 @@ package id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.ui.viewmo
 
 import android.app.Application;
 import androidx.annotation.NonNull;
-import androidx.lifecycle.*;
+import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.CoffeePediaApplication;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.data.entity.BrewMethod;
-import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.data.entity.BrewRecipe;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.data.entity.relation.BrewMethodWithBrewRecipes;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.data.repository.BrewMethodRepository;
-
-import java.util.List;
 
 public class BrewMethodViewModel extends AndroidViewModel {
 
@@ -27,7 +27,9 @@ public class BrewMethodViewModel extends AndroidViewModel {
 		mObservableBrewMethod = brewMethodRepository.getBrewMethodWithBrewRecipesByBrewMethodId(brewMethodId);
 	}
 
-	public LiveData<BrewMethodWithBrewRecipes> getBrewMethodWithBrewRecipes() { return mObservableBrewMethod; }
+	public LiveData<BrewMethodWithBrewRecipes> getBrewMethodWithBrewRecipes() {
+		return mObservableBrewMethod;
+	}
 
 	public void deleteBrewMethod(BrewMethod deletedBrewMethod) {
 		mBrewMethodRepository.deleteBrewMethod(deletedBrewMethod);

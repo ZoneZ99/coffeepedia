@@ -10,7 +10,7 @@ import java.util.List;
 public interface CoffeeBeanDao {
 
 	@Insert(onConflict = OnConflictStrategy.IGNORE)
-	long insertCoffeeBean(CoffeeBean coffeeBean);
+	void insertCoffeeBean(CoffeeBean coffeeBean);
 
 	@Update(onConflict = OnConflictStrategy.REPLACE)
 	void updateCoffeeBean(CoffeeBean coffeeBean);
@@ -21,12 +21,7 @@ public interface CoffeeBeanDao {
 	@Query("SELECT * FROM coffee_beans")
 	LiveData<List<CoffeeBean>> loadAllCoffeeBeans();
 
-	@Query("SELECT * FROM coffee_beans")
-	List<CoffeeBean> loadAllCoffeeBeansSync();
-
 	@Query("SELECT * FROM coffee_beans WHERE coffeeBeanId = :coffeeBeanId")
 	LiveData<CoffeeBean> getCoffeeBeanById(long coffeeBeanId);
 
-	@Query("SELECT * FROM coffee_beans WHERE coffeeBeanId = :coffeeBeanId")
-	CoffeeBean getCoffeeBeanByIdSync(long coffeeBeanId);
 }

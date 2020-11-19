@@ -10,7 +10,7 @@ import java.util.List;
 public interface BrewRecipeDao {
 
 	@Insert(onConflict = OnConflictStrategy.REPLACE)
-	long insertBrewRecipe(BrewRecipe brewRecipe);
+	void insertBrewRecipe(BrewRecipe brewRecipe);
 
 	@Update(onConflict = OnConflictStrategy.REPLACE)
 	void updateBrewRecipe(BrewRecipe brewRecipe);

@@ -11,29 +11,29 @@ import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.data.repos
 
 public class CoffeeBeanFormViewModel extends AndroidViewModel {
 
-    private MutableLiveData<CoffeeBean> mObservableCoffeeBean;
+	private MutableLiveData<CoffeeBean> mObservableCoffeeBean;
 
-    private final CoffeeBeanRepository mCoffeeBeanRepository;
+	private final CoffeeBeanRepository mCoffeeBeanRepository;
 
-    public CoffeeBeanFormViewModel(@NonNull Application application) {
-        super(application);
-        mObservableCoffeeBean = new MutableLiveData<>();
-        mCoffeeBeanRepository = ((CoffeePediaApplication) application).getCoffeeBeanRepository();
-    }
+	public CoffeeBeanFormViewModel(@NonNull Application application) {
+		super(application);
+		mObservableCoffeeBean = new MutableLiveData<>();
+		mCoffeeBeanRepository = ((CoffeePediaApplication) application).getCoffeeBeanRepository();
+	}
 
-    public LiveData<CoffeeBean> getCoffeeBean() {
-        return mObservableCoffeeBean;
-    }
+	public LiveData<CoffeeBean> getCoffeeBean() {
+		return mObservableCoffeeBean;
+	}
 
-    public void setCoffeeBean(CoffeeBean coffeeBean) {
-        mObservableCoffeeBean.setValue(coffeeBean);
-    }
+	public void setCoffeeBean(CoffeeBean coffeeBean) {
+		mObservableCoffeeBean.setValue(coffeeBean);
+	}
 
-    public void insertCoffeeBean(CoffeeBean coffeeBean) {
-        mCoffeeBeanRepository.insertCoffeeBean(coffeeBean);
-    }
+	public void insertCoffeeBean(CoffeeBean coffeeBean) {
+		mCoffeeBeanRepository.insertCoffeeBean(coffeeBean);
+	}
 
-    public void updateCoffeeBean(CoffeeBean coffeeBean) {
-        mCoffeeBeanRepository.updateCoffeeBean(coffeeBean);
-    }
+	public void updateCoffeeBean(CoffeeBean coffeeBean) {
+		mCoffeeBeanRepository.updateCoffeeBean(coffeeBean);
+	}
 }
