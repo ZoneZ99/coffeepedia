@@ -1,76 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:foregroundTint="@color/colorPrimaryDark"
     android:orientation="vertical"
     tools:context=".ui.activity.MainActivity">
 
-    <TextView
-        android:id="@+id/header"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="30dp"
-        android:layout_gravity="center"
-        android:text="@string/header_title" />
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <RelativeLayout
+        <TextView
+            android:id="@+id/header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/roboto_black"
+            android:text="@string/header_title"
+            android:textColor="@color/color_coffee"
+            android:textSize="30sp" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
             <ImageView
                 android:id="@+id/beans_img"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_marginStart="65dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="80dp"
                 android:onClick="startCoffeeBeansActivity"
-                android:src="@drawable/ic_launcher_background" />
+                android:src="@drawable/ic_beans"
+                app:layout_constraintEnd_toStartOf="@+id/reviews_img"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/reviews_img"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="65dp"
+                android:layout_marginEnd="18dp"
                 android:onClick="startCoffeeReviewActivity"
-                android:src="@drawable/ic_launcher_background" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="60dp">
+                android:src="@drawable/ic_reviews"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/beans_img"
+                app:layout_constraintTop_toTopOf="@+id/beans_img" />
 
             <ImageView
                 android:id="@+id/brew_methods_img"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_marginStart="65dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="60dp"
                 android:onClick="startBrewMethodsActivity"
-                android:src="@drawable/ic_launcher_background" />
+                android:src="@drawable/ic_methods"
+                app:layout_constraintEnd_toStartOf="@+id/brew_recipes_img"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/beans_img" />
 
             <ImageView
                 android:id="@+id/brew_recipes_img"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="65dp"
+                android:layout_marginEnd="18dp"
                 android:onClick="startBrewRecipesActivity"
-                android:src="@drawable/ic_launcher_background" />
+                android:src="@drawable/ic_recipes"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/brew_methods_img"
+                app:layout_constraintTop_toTopOf="@+id/brew_methods_img" />
 
-        </RelativeLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>
 
-</LinearLayout>
+</ScrollView>
