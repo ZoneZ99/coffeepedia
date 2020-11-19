@@ -55,6 +55,9 @@ public class CoffeeReview implements Parcelable {
 
 	@Override
 	public String toString() {
-		return name + "\n" + roaster + "\n" + score + "\n" + review;
+		return "Name: " + name + "\n\n" +
+			"Roaster: " + roaster + "\n\n" +
+			"Cupping Score: " + score + "\n\n" +
+			"Review: " + review;
 	}
 }
