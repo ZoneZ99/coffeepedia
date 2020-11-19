@@ -24,7 +24,6 @@
         <Button
             android:id="@+id/button_edit_coffee_bean"
             style="@style/button"
-            android:layout_marginTop="30dp"
             android:layout_height="wrap_content"
             android:text="@string/edit" />
 
@@ -32,13 +31,11 @@
             android:id="@+id/button_delete_coffee_bean"
             style="@style/button"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
             android:text="@string/delete" />
 
         <Button
             android:id="@+id/button_export_coffee_bean_detail"
             style="@style/button"
-            android:layout_marginTop="30dp"
             android:layout_height="wrap_content"
             android:text="@string/export_to_pdf" />
 

@@ -1,8 +1,6 @@
 <resources>
     <string name="app_name">CoffeePedia</string>
     <string name="header_title">CoffeePedia</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="add_bean">Add Bean</string>
     <string name="export_to_pdf">Export to PDF</string>
     <string name="coffee_beans">Coffee Beans</string>
@@ -41,8 +39,9 @@
     <string name="success_add_brew_recipe">Brew Recipe Added</string>
     <string name="success_edit_brew_recipe">Brew Recipe edited</string>
     <string name="success_delete_brew_recipe">Brew recipe deleted</string>
-    <string name="recipes">Recipes for This Brew Method</string>
+    <string name="recipes">Recipes</string>
     <string name="success_export_pdf">Data exported to PDF</string>
     <string name="coffee_reviews">Coffee Reviews</string>
     <string name="failure_fetching_reviews">Failed to get reviews. Please check your internet connection and try again</string>
+    <string name="empty_related_brew_recipes">No Brew Recipes</string>
 </resources>

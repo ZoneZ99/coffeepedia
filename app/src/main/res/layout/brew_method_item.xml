@@ -29,15 +29,17 @@
 
             <TextView
                 android:id="@+id/name"
+                style="@style/itemText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{brewMethod.name}" />
+                android:text="@{@string/brew_method_input_name.concat(`: `).concat(String.valueOf(brewMethod.name))}" />
 
             <TextView
                 android:id="@+id/description"
+                style="@style/itemText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{brewMethod.description}" />
+                android:text="@{@string/brew_method_input_description.concat(`: `).concat(String.valueOf(brewMethod.description))}" />
 
         </LinearLayout>
 

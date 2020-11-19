@@ -14,6 +14,7 @@
             android:orientation="vertical">
 
             <TextView
+                style="@style/title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/brew_methods"
@@ -28,14 +29,14 @@
 
             <Button
                 android:id="@+id/button_add_brew_method"
-                android:layout_width="match_parent"
+                style="@style/button"
                 android:layout_height="wrap_content"
                 android:text="@string/add_brew_method"
                 android:onClick="startBrewMethodAddView"/>
 
             <Button
                 android:id="@+id/button_export_brew_method_list"
-                android:layout_width="match_parent"
+                style="@style/button"
                 android:layout_height="wrap_content"
                 android:text="@string/export_to_pdf" />
 
