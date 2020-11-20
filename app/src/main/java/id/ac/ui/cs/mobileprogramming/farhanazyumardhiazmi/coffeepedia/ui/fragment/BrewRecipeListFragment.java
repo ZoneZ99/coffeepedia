@@ -58,6 +58,11 @@ public class BrewRecipeListFragment extends Fragment {
 		brewRecipes.observe(getViewLifecycleOwner(), recipes -> {
 			if (recipes != null) {
 				mBrewRecipeAdapter.setBrewRecipeList(recipes);
+				if (recipes.isEmpty()) {
+					mBinding.buttonExportBrewRecipeList.setVisibility(View.GONE);
+				} else {
+					mBinding.buttonExportBrewRecipeList.setVisibility(View.VISIBLE);
+				}
 			}
 			mBinding.executePendingBindings();
 		});

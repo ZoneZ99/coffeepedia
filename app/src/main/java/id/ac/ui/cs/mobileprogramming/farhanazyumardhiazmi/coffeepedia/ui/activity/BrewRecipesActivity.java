@@ -75,7 +75,7 @@ public class BrewRecipesActivity extends AppCompatActivity {
 	protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 
-		if (requestCode == EXPORT_BREW_RECIPE_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
+		if (requestCode == EXPORT_BREW_RECIPE_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
 			ContentValues contentValues = new ContentValues();
 			contentValues.put(PdfProvider.CONTENT_TYPE, PdfProvider.BREW_RECIPE);
 			contentValues.put(PdfProvider.CONTENT_ID, exportedBrewRecipeId);

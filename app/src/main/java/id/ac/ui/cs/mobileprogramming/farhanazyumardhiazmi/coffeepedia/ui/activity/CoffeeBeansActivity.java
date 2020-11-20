@@ -83,14 +83,12 @@ public class CoffeeBeansActivity extends AppCompatActivity {
 		} else if (requestCode == EDIT_COFFEE_BEAN_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
 			Toast.makeText(getApplicationContext(), R.string.success_edit_coffee_bean, Toast.LENGTH_SHORT).show();
 		} else if (requestCode == EXPORT_COFFEE_BEAN_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
-			if (data != null) {
-				ContentValues contentValues = new ContentValues();
-				contentValues.put(PdfProvider.CONTENT_TYPE, PdfProvider.COFFEE_BEAN);
-				contentValues.put(PdfProvider.CONTENT_ID, exportedCoffeeBeanId);
-				contentValues.put(PdfProvider.URI_KEY, data.getDataString());
-				getContentResolver().insert(PdfProvider.CONTENT_URI, contentValues);
-				Toast.makeText(getApplicationContext(), R.string.success_export_pdf, Toast.LENGTH_SHORT).show();
-			}
+			ContentValues contentValues = new ContentValues();
+			contentValues.put(PdfProvider.CONTENT_TYPE, PdfProvider.COFFEE_BEAN);
+			contentValues.put(PdfProvider.CONTENT_ID, exportedCoffeeBeanId);
+			contentValues.put(PdfProvider.URI_KEY, data.getDataString());
+			getContentResolver().insert(PdfProvider.CONTENT_URI, contentValues);
+			Toast.makeText(getApplicationContext(), R.string.success_export_pdf, Toast.LENGTH_SHORT).show();
 		}
 	}
 

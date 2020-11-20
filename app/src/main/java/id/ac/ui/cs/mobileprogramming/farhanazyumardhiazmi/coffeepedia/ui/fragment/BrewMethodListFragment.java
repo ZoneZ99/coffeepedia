@@ -58,6 +58,11 @@ public class BrewMethodListFragment extends Fragment {
 		brewMethods.observe(getViewLifecycleOwner(), methods -> {
 			if (methods != null) {
 				mBrewMethodAdapter.setBrewMethodList(methods);
+				if (methods.isEmpty()) {
+					mBinding.buttonExportBrewMethodList.setVisibility(View.GONE);
+				} else {
+					mBinding.buttonExportBrewMethodList.setVisibility(View.VISIBLE);
+				}
 			}
 			mBinding.executePendingBindings();
 		});

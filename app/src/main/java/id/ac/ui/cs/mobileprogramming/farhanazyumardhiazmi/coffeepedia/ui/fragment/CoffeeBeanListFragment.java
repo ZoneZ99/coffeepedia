@@ -57,6 +57,11 @@ public class CoffeeBeanListFragment extends Fragment {
 		coffeeBeans.observe(getViewLifecycleOwner(), beans -> {
 			if (beans != null) {
 				mCoffeeBeanAdapter.setCoffeeBeanList(beans);
+				if (beans.isEmpty()) {
+					mBinding.buttonExportCoffeeBeanList.setVisibility(View.GONE);
+				} else {
+					mBinding.buttonExportCoffeeBeanList.setVisibility(View.VISIBLE);
+				}
 			}
 			mBinding.executePendingBindings();
 		});
