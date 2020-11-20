@@ -64,6 +64,7 @@ public class BrewMethodDetailFragment extends Fragment {
 				if (brewMethodWithBrewRecipes.getBrewRecipes().isEmpty()) {
 					mBinding.titleRelatedBrewRecipes.setText(R.string.empty_related_brew_recipes);
 				} else {
+					mBinding.titleRelatedBrewRecipes.setText(R.string.recipes);
 					List<String> brewRecipeNames = brewMethodWithBrewRecipes.getBrewRecipes().stream().map(BrewRecipe::getName).collect(Collectors.toList());
 					mBinding.listRelatedBrewRecipes.setAdapter(
 						new ArrayAdapter<>(
