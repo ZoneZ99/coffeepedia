@@ -15,10 +15,6 @@ import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.data.entit
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.data.entity.BrewRecipe;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.data.entity.CoffeeBean;
 
-import java.util.List;
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
-
 @Database(
 	entities = {
 		CoffeeBean.class,
@@ -55,29 +51,10 @@ public abstract class CoffeePediaDatabase extends RoomDatabase {
 				@Override
 				public void onCreate(@NonNull SupportSQLiteDatabase db) {
 					super.onCreate(db);
-					Executor executor = Executors.newSingleThreadExecutor();
-					executor.execute(() -> {
-						CoffeePediaDatabase database = CoffeePediaDatabase.getInstance(context);
-						List<CoffeeBean> coffeeBeansSeed = DataGenerator.generateCoffeeBeans();
-						List<BrewMethod> brewMethodsSeed = DataGenerator.generateBrewMethods();
-						seedData(database, coffeeBeansSeed, brewMethodsSeed);
-						database.setDatabaseCreated();
-					});
-				}
-			})
+					CoffeePediaDatabase database = CoffeePediaDatabase.getInstance(context);
+					database.setDatabaseCreated();
+				}})
 			.build();
-	}
-
-	private static void seedData(
-		final CoffeePediaDatabase database,
-		final List<CoffeeBean> coffeeBeans,
-		final List<BrewMethod> brewMethods
-	) {
-		database.runInTransaction(() -> {
-				coffeeBeans.forEach(coffeeBean -> database.coffeeBeanDao().insertCoffeeBean(coffeeBean));
-				brewMethods.forEach(brewMethod -> database.brewMethodDao().insertBrewMethod(brewMethod));
-			}
-		);
 	}
 
 	private void updateDatabaseCreated(final Context context) {
