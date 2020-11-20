@@ -8,7 +8,6 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
-import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.ApplicationExecutors;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.data.dao.BrewMethodDao;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.data.dao.BrewRecipeDao;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.data.dao.CoffeeBeanDao;
@@ -17,6 +16,8 @@ import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.data.entit
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.data.entity.CoffeeBean;
 
 import java.util.List;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 @Database(
 	entities = {
@@ -36,26 +37,27 @@ public abstract class CoffeePediaDatabase extends RoomDatabase {
 
 	public abstract BrewRecipeDao brewRecipeDao();
 
-	private static CoffeePediaDatabase INSTANCE;
+    private static CoffeePediaDatabase INSTANCE;
 
 	private final MutableLiveData<Boolean> mIsDatabaseCreated = new MutableLiveData<>();
 
-	public static synchronized CoffeePediaDatabase getInstance(final Context context, final ApplicationExecutors executors) {
+	public static synchronized CoffeePediaDatabase getInstance(final Context context) {
 		if (INSTANCE == null) {
-			INSTANCE = buildDatabase(context.getApplicationContext(), executors);
+			INSTANCE = buildDatabase(context.getApplicationContext());
 			INSTANCE.updateDatabaseCreated(context.getApplicationContext());
 		}
 		return INSTANCE;
 	}
 
-	private static CoffeePediaDatabase buildDatabase(final Context context, final ApplicationExecutors executors) {
+	private static CoffeePediaDatabase buildDatabase(final Context context) {
 		return Room.databaseBuilder(context, CoffeePediaDatabase.class, DATABASE_NAME)
 			.addCallback(new Callback() {
 				@Override
 				public void onCreate(@NonNull SupportSQLiteDatabase db) {
 					super.onCreate(db);
-					executors.getDiskIO().execute(() -> {
-						CoffeePediaDatabase database = CoffeePediaDatabase.getInstance(context, executors);
+					Executor executor = Executors.newSingleThreadExecutor();
+					executor.execute(() -> {
+						CoffeePediaDatabase database = CoffeePediaDatabase.getInstance(context);
 						List<CoffeeBean> coffeeBeansSeed = DataGenerator.generateCoffeeBeans();
 						List<BrewMethod> brewMethodsSeed = DataGenerator.generateBrewMethods();
 						seedData(database, coffeeBeansSeed, brewMethodsSeed);

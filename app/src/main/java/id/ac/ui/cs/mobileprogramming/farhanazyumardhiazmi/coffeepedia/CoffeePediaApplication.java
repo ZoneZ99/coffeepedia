@@ -8,16 +8,13 @@ import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.data.repos
 
 public class CoffeePediaApplication extends Application {
 
-	private ApplicationExecutors mAppExecutors;
-
 	@Override
 	public void onCreate() {
 		super.onCreate();
-		mAppExecutors = new ApplicationExecutors();
 	}
 
 	public CoffeePediaDatabase getDatabase() {
-		return CoffeePediaDatabase.getInstance(this, mAppExecutors);
+		return CoffeePediaDatabase.getInstance(this);
 	}
 
 	public CoffeeBeanRepository getCoffeeBeanRepository() {
