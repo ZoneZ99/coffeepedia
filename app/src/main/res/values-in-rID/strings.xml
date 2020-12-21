@@ -44,4 +44,5 @@
     <string name="coffee_reviews">Penilaian Kopi</string>
     <string name="failure_fetching_reviews">Gagal mendapatkan penilaian. Mohon periksa koneksi internet Anda dan coba lagi</string>
     <string name="empty_related_brew_recipes">Tidak Ada Resep Seduh</string>
+    <string name="no_internet_connection">Tidak ada koneksi internet. Mencoba kembali…</string>
 </resources>

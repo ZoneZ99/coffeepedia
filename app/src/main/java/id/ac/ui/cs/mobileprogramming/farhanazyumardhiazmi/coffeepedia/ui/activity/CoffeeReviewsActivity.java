@@ -4,7 +4,11 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
@@ -21,6 +25,10 @@ import java.util.stream.Collectors;
 public class CoffeeReviewsActivity extends AppCompatActivity {
 
 	private ActivityCoffeeReviewsBinding mBinding;
+
+	private ConnectivityManager mConnectivityManager;
+
+	private final Handler mHandler = new Handler();
 
 	private BroadcastReceiver mCoffeeReviewReceiver = new BroadcastReceiver() {
 		@Override
@@ -47,6 +55,33 @@ public class CoffeeReviewsActivity extends AppCompatActivity {
 		View view = mBinding.getRoot();
 		setContentView(view);
 
+		registerReceiver(mCoffeeReviewReceiver, new IntentFilter(BuildConfig.APPLICATION_ID + ".COFFEE_REVIEW_BROADCAST"));
+
+		mConnectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+		mHandler.post(new Runnable() {
+			@Override
+			public void run() {
+				NetworkInfo activeNetwork = mConnectivityManager.getActiveNetworkInfo();
+				boolean isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
+				Log.d("CoffeePedia", String.valueOf(isConnected));
+				if (!isConnected) {
+					Toast.makeText(getApplicationContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
+					mHandler.postDelayed(this, 2000);
+				} else {
+					mHandler.removeCallbacks(this);
+					startFetchingReviews();
+				}
+			}
+		});
+	}
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		unregisterReceiver(mCoffeeReviewReceiver);
+	}
+
+	private void startFetchingReviews() {
 		ArrayList<String> loadingContent = new ArrayList<>();
 		for (int i = 0; i < 10; i++) {
 			loadingContent.add("Loading...");
@@ -58,16 +93,8 @@ public class CoffeeReviewsActivity extends AppCompatActivity {
 				loadingContent
 			)
 		);
-
-		registerReceiver(mCoffeeReviewReceiver, new IntentFilter(BuildConfig.APPLICATION_ID + ".COFFEE_REVIEW_BROADCAST"));
 		Intent intent = new Intent(this, CoffeeReviewScrapingService.class);
 		startService(intent);
-	}
-
-	@Override
-	protected void onDestroy() {
-		super.onDestroy();
-		unregisterReceiver(mCoffeeReviewReceiver);
 	}
 
 	private void populateReviewList(ArrayList<CoffeeReview> content) {

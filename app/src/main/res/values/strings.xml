@@ -44,4 +44,5 @@
     <string name="coffee_reviews">Coffee Reviews</string>
     <string name="failure_fetching_reviews">Failed to get reviews. Please check your internet connection and try again</string>
     <string name="empty_related_brew_recipes">No Brew Recipes</string>
+    <string name="no_internet_connection">No internet connection. Retrying…</string>
 </resources>
