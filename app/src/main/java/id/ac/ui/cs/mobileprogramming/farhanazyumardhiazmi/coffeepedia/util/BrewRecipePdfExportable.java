@@ -3,11 +3,18 @@ package id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.util;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.data.entity.BrewRecipe;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class BrewRecipePdfExportable implements PdfExportable {
 
 	List<BrewRecipe> brewRecipes;
+
+	public native String[] getColumnNamesNative();
+
+	static {
+		System.loadLibrary("get-column-names");
+	}
 
 	public BrewRecipePdfExportable(List<BrewRecipe> brewRecipes) {
 		this.brewRecipes = brewRecipes;
@@ -30,14 +37,6 @@ public class BrewRecipePdfExportable implements PdfExportable {
 
 	@Override
 	public List<String> getColumnNames() {
-		List<String> columnNames = new ArrayList<>();
-		columnNames.add("Id");
-		columnNames.add("Name");
-		columnNames.add("Roast Level");
-		columnNames.add("Grind Level");
-		columnNames.add("Water Temperature");
-		columnNames.add("Brew Time");
-		columnNames.add("Brew Steps");
-		return columnNames;
+		return new ArrayList<>(Arrays.asList(getColumnNamesNative()));
 	}
 }
