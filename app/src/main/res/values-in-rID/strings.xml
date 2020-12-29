@@ -45,4 +45,10 @@
     <string name="failure_fetching_reviews">Gagal mendapatkan penilaian. Mohon periksa koneksi internet Anda dan coba lagi</string>
     <string name="empty_related_brew_recipes">Tidak Ada Resep Seduh</string>
     <string name="no_internet_connection">Tidak ada koneksi internet. Mencoba kembali…</string>
+    <string name="permission_rationale">Fitur ekspor data ke PDF membutuhkan izin untuk menulis data ke penyimpanan Anda.
+        Mohon berikan izin untuk menggunakan fitur ini.
+    </string>
+    <string name="grant_permission">Beri Izin</string>
+    <string name="cancel_permission">Batal</string>
+    <string name="permission_denied">Mohon beri izin aplikasi ini untuk mengakses penyimpanan.</string>
 </resources>

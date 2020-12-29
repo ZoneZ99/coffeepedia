@@ -1,5 +1,8 @@
 package id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.ui.fragment;
 
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Lifecycle;
@@ -15,6 +19,7 @@ import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.R;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.data.entity.CoffeeBean;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.databinding.FragmentCoffeeBeanDetailBinding;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.ui.activity.CoffeeBeansActivity;
+import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.ui.activity.PermissionRationaleActivity;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.ui.viewmodel.CoffeeBeanViewModel;
 
 public class CoffeeBeanDetailFragment extends Fragment {
@@ -82,8 +87,16 @@ public class CoffeeBeanDetailFragment extends Fragment {
 
 	private final View.OnClickListener mExportButtonClickCallback = view -> {
 		if (getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.STARTED)) {
-			mViewModel.getCoffeeBean().observe(this, bean -> ((CoffeeBeansActivity) getActivity())
-				.exportDataToPdf(bean.getCoffeeBeanId(), "coffee_bean_detail.pdf"));
+			if ((ContextCompat.checkSelfPermission(getContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE)
+				== PackageManager.PERMISSION_GRANTED)) {
+				mViewModel.getCoffeeBean().observe(this, bean -> ((CoffeeBeansActivity) getActivity())
+					.exportDataToPdf(bean.getCoffeeBeanId(), "coffee_bean_detail.pdf"));
+			} else if (shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+				Intent intent = new Intent(this.getContext(), PermissionRationaleActivity.class);
+				startActivity(intent);
+			} else {
+				Toast.makeText(getContext(), R.string.permission_denied, Toast.LENGTH_SHORT).show();
+			}
 		}
 	};
 

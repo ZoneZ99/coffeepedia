@@ -8,7 +8,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
@@ -63,7 +62,6 @@ public class CoffeeReviewsActivity extends AppCompatActivity {
 			public void run() {
 				NetworkInfo activeNetwork = mConnectivityManager.getActiveNetworkInfo();
 				boolean isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
-				Log.d("CoffeePedia", String.valueOf(isConnected));
 				if (!isConnected) {
 					Toast.makeText(getApplicationContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
 					mHandler.postDelayed(this, 2000);

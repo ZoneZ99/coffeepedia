@@ -1,6 +1,8 @@
 package id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.ui.fragment;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Lifecycle;
@@ -19,6 +22,7 @@ import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.data.entit
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.databinding.FragmentBrewMethodDetailBinding;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.ui.activity.BrewMethodsActivity;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.ui.activity.BrewRecipeFormActivity;
+import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.ui.activity.PermissionRationaleActivity;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.ui.callback.BrewMethodClickCallback;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.ui.viewmodel.BrewMethodViewModel;
 
@@ -65,7 +69,12 @@ public class BrewMethodDetailFragment extends Fragment {
 					mBinding.titleRelatedBrewRecipes.setText(R.string.empty_related_brew_recipes);
 				} else {
 					mBinding.titleRelatedBrewRecipes.setText(R.string.recipes);
-					List<String> brewRecipeNames = brewMethodWithBrewRecipes.getBrewRecipes().stream().map(BrewRecipe::getName).collect(Collectors.toList());
+					List<String> brewRecipeNames =
+						brewMethodWithBrewRecipes
+							.getBrewRecipes()
+							.stream()
+							.map(BrewRecipe::getName)
+							.collect(Collectors.toList());
 					mBinding.listRelatedBrewRecipes.setAdapter(
 						new ArrayAdapter<>(
 							getContext(),
@@ -119,11 +128,19 @@ public class BrewMethodDetailFragment extends Fragment {
 
 	private final View.OnClickListener mExportButtonClickCallback = view -> {
 		if (getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.STARTED)) {
-			mViewModel.getBrewMethodWithBrewRecipes().observe(this, brewMethodWithBrewRecipes -> ((BrewMethodsActivity) getActivity())
-				.exportDataToPdf(
-					brewMethodWithBrewRecipes.getBrewMethod().getBrewMethodId(),
-					"brew_method_detail.pdf"
-				));
+			if ((ContextCompat.checkSelfPermission(getContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE)
+				== PackageManager.PERMISSION_GRANTED)) {
+				mViewModel.getBrewMethodWithBrewRecipes().observe(this, brewMethodWithBrewRecipes -> ((BrewMethodsActivity) getActivity())
+					.exportDataToPdf(
+						brewMethodWithBrewRecipes.getBrewMethod().getBrewMethodId(),
+						"brew_method_detail.pdf"
+					));
+			} else if (shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+				Intent intent = new Intent(this.getContext(), PermissionRationaleActivity.class);
+				startActivity(intent);
+			} else {
+				Toast.makeText(getContext(), R.string.permission_denied, Toast.LENGTH_SHORT).show();
+			}
 		}
 	};
 }
