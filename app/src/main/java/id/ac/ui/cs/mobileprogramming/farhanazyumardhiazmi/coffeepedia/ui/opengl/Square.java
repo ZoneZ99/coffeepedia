@@ -42,7 +42,7 @@ public class Square {
 	private final short[] drawOrder = {0, 1, 2, 0, 2, 3}; // order to draw vertices
 
 	// Set color with red, green, blue and alpha (opacity) values
-	float[] color = {0.63671875f, 0.76953125f, 0.22265625f, 1.0f};
+	float[] color = {0.627f, 0.322f, 0.176f, 1.0f};
 
 	private int mPositionHandle;
 	private int mColorHandle;

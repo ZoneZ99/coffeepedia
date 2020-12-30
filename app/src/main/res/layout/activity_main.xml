@@ -25,7 +25,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/beans_img"
@@ -77,14 +77,12 @@
                 android:id="@+id/animation_img"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="18dp"
                 android:onClick="startAnimationActivity"
-                android:src="@drawable/ic_recipes"
+                android:src="@drawable/ic_animation"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.142"
-                app:layout_constraintStart_toEndOf="@+id/brew_methods_img"
-                app:layout_constraintTop_toTopOf="@+id/brew_methods_img" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/brew_methods_img" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
