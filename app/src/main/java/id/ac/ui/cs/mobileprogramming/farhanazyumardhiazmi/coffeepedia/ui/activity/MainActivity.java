@@ -33,4 +33,9 @@ public class MainActivity extends AppCompatActivity {
 		Intent intent = new Intent(this, BrewRecipesActivity.class);
 		startActivity(intent);
 	}
+
+	public void startAnimationActivity(View view) {
+		Intent intent = new Intent(this, AnimationActivity.class);
+		startActivity(intent);
+	}
 }

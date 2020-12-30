@@ -6,6 +6,8 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
+    <uses-feature android:glEsVersion="0x00020000" android:required="true" />
+
     <application
         android:name=".CoffeePediaApplication"
         android:allowBackup="true"
@@ -23,20 +25,14 @@
         </activity>
 
         <activity android:name=".ui.activity.CoffeeBeansActivity"></activity>
-
         <activity android:name=".ui.activity.CoffeeBeanFormActivity"></activity>
-
         <activity android:name=".ui.activity.CoffeeReviewsActivity"></activity>
-
         <activity android:name=".ui.activity.BrewMethodsActivity"></activity>
-
         <activity android:name=".ui.activity.BrewMethodFormActivity"></activity>
-
         <activity android:name=".ui.activity.BrewRecipesActivity"></activity>
-
         <activity android:name=".ui.activity.BrewRecipeFormActivity"></activity>
-
         <activity android:name=".ui.activity.PermissionRationaleActivity"></activity>
+        <activity android:name=".ui.activity.AnimationActivity"></activity>
 
         <service android:name=".service.CoffeeReviewScrapingService"></service>
 
