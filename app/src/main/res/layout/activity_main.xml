@@ -77,12 +77,24 @@
                 android:id="@+id/animation_img"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="60dp"
                 android:onClick="startAnimationActivity"
                 android:src="@drawable/ic_animation"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/reminder_img"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/brew_methods_img" />
+
+            <ImageView
+                android:id="@+id/reminder_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="18dp"
+                android:onClick="showTimePicker"
+                android:src="@drawable/ic_reminder"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/animation_img"
+                app:layout_constraintTop_toTopOf="@+id/animation_img" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

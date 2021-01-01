@@ -1,6 +1,7 @@
 package id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia;
 
 import android.app.Application;
+import android.content.Context;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.data.CoffeePediaDatabase;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.data.repository.BrewMethodRepository;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.data.repository.BrewRecipeRepository;
