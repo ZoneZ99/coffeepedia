@@ -52,9 +52,10 @@ public class ReminderTimePickerFragment extends DialogFragment implements TimePi
 
 		final AlarmManager alarmManager = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
 		if (alarmManager != null) {
-			alarmManager.setExactAndAllowWhileIdle(
+			alarmManager.setInexactRepeating(
 				AlarmManager.RTC_WAKEUP,
 				calendar.getTimeInMillis(),
+				AlarmManager.INTERVAL_DAY,
 				notifyPendingIntent
 			);
 			Toast.makeText(getActivity(), R.string.reminder_set, Toast.LENGTH_SHORT).show();
