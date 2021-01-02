@@ -11,7 +11,7 @@ import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.data.repos
 
 public class CoffeeBeanFormViewModel extends AndroidViewModel {
 
-	private MutableLiveData<CoffeeBean> mObservableCoffeeBean;
+	private final MutableLiveData<CoffeeBean> mObservableCoffeeBean;
 
 	private final CoffeeBeanRepository mCoffeeBeanRepository;
 

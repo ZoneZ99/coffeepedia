@@ -15,7 +15,7 @@ public class BrewMethodRepository {
 
 	private final CoffeePediaDatabase mDatabase;
 
-	private MediatorLiveData<List<BrewMethod>> mObservableBrewMethods;
+	private final MediatorLiveData<List<BrewMethod>> mObservableBrewMethods;
 
 	private BrewMethodRepository(final CoffeePediaDatabase database) {
 		mDatabase = database;

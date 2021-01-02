@@ -11,7 +11,7 @@ import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.data.repos
 
 public class BrewRecipeFormViewModel extends AndroidViewModel {
 
-	private MutableLiveData<BrewRecipe> mObservableBrewRecipe;
+	private final MutableLiveData<BrewRecipe> mObservableBrewRecipe;
 
 	private final BrewRecipeRepository mBrewRecipeRepository;
 

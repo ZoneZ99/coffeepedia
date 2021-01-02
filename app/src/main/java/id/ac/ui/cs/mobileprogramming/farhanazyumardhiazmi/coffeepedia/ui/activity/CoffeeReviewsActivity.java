@@ -31,7 +31,7 @@ public class CoffeeReviewsActivity extends AppCompatActivity {
 
 	private final Handler mHandler = new Handler();
 
-	private BroadcastReceiver mCoffeeReviewReceiver = new BroadcastReceiver() {
+	private final BroadcastReceiver mCoffeeReviewReceiver = new BroadcastReceiver() {
 		@Override
 		public void onReceive(Context context, Intent intent) {
 			Bundle bundle = intent.getExtras();

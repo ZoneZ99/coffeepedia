@@ -14,7 +14,7 @@ public class CoffeeBeanRepository {
 
 	private final CoffeePediaDatabase mDatabase;
 
-	private MediatorLiveData<List<CoffeeBean>> mObservableCoffeeBeans;
+	private final MediatorLiveData<List<CoffeeBean>> mObservableCoffeeBeans;
 
 	private CoffeeBeanRepository(final CoffeePediaDatabase database) {
 		mDatabase = database;
