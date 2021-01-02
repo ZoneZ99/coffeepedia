@@ -12,6 +12,8 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.BuildConfig;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.R;
 import id.ac.ui.cs.mobileprogramming.farhanazyumardhiazmi.coffeepedia.databinding.ActivityCoffeeReviewsBinding;
@@ -63,7 +65,7 @@ public class CoffeeReviewsActivity extends AppCompatActivity {
 				NetworkInfo activeNetwork = mConnectivityManager.getActiveNetworkInfo();
 				boolean isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
 				if (!isConnected) {
-					Toast.makeText(getApplicationContext(), R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
+					Snackbar.make(mBinding.coordinator, R.string.no_internet_connection, BaseTransientBottomBar.LENGTH_LONG).show();
 					mHandler.postDelayed(this, 2000);
 				} else {
 					mHandler.removeCallbacks(this);
